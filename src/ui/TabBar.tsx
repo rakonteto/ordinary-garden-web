@@ -11,7 +11,11 @@ export default function TabBar() {
   return (
     <nav className="tabbar">
       {TABS.map((t) => (
-        <NavLink key={t.to} to={t.to} className="tabbar__item">
+        <NavLink
+          key={t.to}
+          to={t.to}
+          className={({ isActive }) => (isActive ? 'tabbar__item active' : 'tabbar__item')}
+        >
           {t.label}
         </NavLink>
       ))}

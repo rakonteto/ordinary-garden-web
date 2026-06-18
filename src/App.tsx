@@ -7,7 +7,7 @@ import SettingsRoute from './routes/SettingsRoute'
 export default function App() {
   return (
     <HashRouter>
-      <main style={{ flex: 1, overflowY: 'auto' }}>
+      <main>
         <Routes>
           <Route path="/today" element={<TodayRoute />} />
           <Route path="/garden" element={<GardenRoute />} />

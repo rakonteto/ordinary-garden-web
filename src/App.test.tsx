@@ -14,4 +14,9 @@ describe('App 셸', () => {
     render(<App />)
     expect(screen.getByRole('heading', { name: '오늘' })).toBeInTheDocument()
   })
+
+  it('기본 경로에서 오늘 탭이 활성 상태다', () => {
+    render(<App />)
+    expect(screen.getByRole('link', { name: '오늘' })).toHaveClass('active')
+  })
 })
