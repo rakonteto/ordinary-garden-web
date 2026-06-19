@@ -1,4 +1,5 @@
 // @vitest-environment node
+// jsdom+fake-indexeddb는 IDB 라운드트립에서 Blob 인스턴스를 보존하지 못한다(node 환경은 보존).
 import { describe, it, expect, beforeEach } from 'vitest'
 import { db } from './db'
 import { putPhoto, getPhoto, softDeletePhoto } from './photos'

@@ -11,11 +11,14 @@ export interface NewPlantFields {
   note?: string
 }
 
+// isArchived는 제외: 보관은 archivePlant가 단일 경로(updatePlant로 우회하지 않는다).
 export type PlantPatch = Partial<
-  Pick<Plant, 'areaId' | 'name' | 'lightRequirement' | 'photoId' | 'datePlanted' | 'note' | 'isArchived'>
+  Pick<Plant, 'areaId' | 'name' | 'lightRequirement' | 'photoId' | 'datePlanted' | 'note'>
 >
 
 export async function createPlant(fields: NewPlantFields): Promise<Plant> {
+  // sortOrder = 현재 행 수(tombstone 포함)로 단조 증가. 단일 사용자 순차 조작이라
+  // 동시 생성으로 인한 중복 순서는 사실상 없다(명시적 reorder는 ④⑥에서 도입).
   const sortOrder = await db.plants.count()
   const plant: Plant = {
     ...baseFields(Date.now()),
@@ -39,6 +42,7 @@ export async function listPlants(): Promise<Plant[]> {
 }
 
 export async function listPlantsByArea(areaId: string): Promise<Plant[]> {
+  // areaId는 인덱스라 where로 좁히고 sortOrder는 메모리 정렬(sortBy) — listPlants의 orderBy와 동일 결과.
   const all = await db.plants.where('areaId').equals(areaId).sortBy('sortOrder')
   return all.filter((p) => !p.deleted && !p.isArchived)
 }
