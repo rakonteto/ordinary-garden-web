@@ -24,4 +24,12 @@ describe('PlantPhoto', () => {
     expect(img.getAttribute('src')).toBe('blob:mock-url')
     expect(img).toHaveAttribute('alt', '바질')
   })
+
+  it('언마운트 시 생성한 object URL을 revoke한다(누수 방지)', async () => {
+    const photo = await putPhoto({ ownerId: 'p1', blob: new Blob(['x'], { type: 'image/png' }) })
+    const { unmount } = render(<PlantPhoto photoId={photo.id} alt="바질" />)
+    await screen.findByRole('img')
+    unmount()
+    expect(URL.revokeObjectURL).toHaveBeenCalledWith('blob:mock-url')
+  })
 })

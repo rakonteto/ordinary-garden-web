@@ -29,7 +29,7 @@ export default function PlantPhoto({ photoId, alt, className }: Props) {
 
   if (!url) {
     return (
-      <div className={`plant-photo plant-photo--empty ${className ?? ''}`} data-testid="plant-photo-placeholder" aria-hidden>
+      <div className={`plant-photo plant-photo--empty ${className ?? ''}`} data-testid="plant-photo-placeholder" aria-hidden="true">
         <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
           <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8a8 8 0 0 1-9 10" />
           <path d="M2 21c0-3 1.85-5.36 5.08-6" />
