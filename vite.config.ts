@@ -26,6 +26,18 @@ export default defineConfig({
           { src: 'icon-maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
         ],
       },
+      workbox: {
+        runtimeCaching: [
+          {
+            urlPattern: 'https://rakonteto.github.io/ordinary-garden-data/weather.json',
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'weather-data',
+              expiration: { maxEntries: 4, maxAgeSeconds: 60 * 60 * 6 },
+            },
+          },
+        ],
+      },
     }),
   ],
   test: {
