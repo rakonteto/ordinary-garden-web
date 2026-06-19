@@ -3,6 +3,7 @@ import TabBar from './ui/TabBar'
 import TodayRoute from './routes/TodayRoute'
 import GardenRoute from './routes/GardenRoute'
 import SettingsRoute from './routes/SettingsRoute'
+import WeatherDetail from './weather/WeatherDetail'
 
 export default function App() {
   return (
@@ -10,6 +11,7 @@ export default function App() {
       <main>
         <Routes>
           <Route path="/today" element={<TodayRoute />} />
+          <Route path="/weather" element={<WeatherDetail />} />
           <Route path="/garden" element={<GardenRoute />} />
           <Route path="/settings" element={<SettingsRoute />} />
           <Route path="*" element={<Navigate to="/today" replace />} />
