@@ -1,0 +1,26 @@
+.area-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.area-section__head {
+  font-size: 1.05rem;
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+.area-section__count {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--color-text-weak);
+}
+.area-section__empty {
+  color: var(--color-text-weak);
+  margin: 0;
+  padding: var(--space-2) 0;
+}
+.area-section__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+}
