@@ -1,0 +1,34 @@
+.wsc {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: var(--space-5);
+  cursor: pointer;
+}
+.wsc--empty {
+  padding: var(--space-5);
+  color: var(--color-text-weak);
+}
+.wsc__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.wsc__loc { color: var(--color-text-weak); font-size: 0.9rem; }
+.wsc__glyph { color: var(--color-primary); }
+.wsc__temp { font-size: 3.1rem; font-weight: 300; line-height: 1.05; margin-top: var(--space-2); }
+.wsc__cond { color: var(--color-text-weak); margin-top: var(--space-1); }
+.wsc__metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+.wsc__metric {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+.wsc__fresh { margin-top: var(--space-4); font-size: 0.8rem; color: var(--color-text-weak); }
