@@ -21,6 +21,16 @@ describe('gardenStore', () => {
     expect(store.getSnapshot()).toEqual({ areas: [], plants: [], loaded: false })
   })
 
+  it('getSnapshot은 변화 없으면 동일 참조, 변경 시 새 참조를 준다', async () => {
+    const store = makeStore()
+    const initial = store.getSnapshot()
+    expect(store.getSnapshot()).toBe(initial) // 호출마다 새로 할당하지 않음(useSyncExternalStore 계약)
+    await store.load()
+    const afterLoad = store.getSnapshot()
+    expect(afterLoad).not.toBe(initial)
+    expect(store.getSnapshot()).toBe(afterLoad)
+  })
+
   it('load하면 areas·plants를 채우고 구독자에 통지한다', async () => {
     const store = makeStore()
     let notified = 0

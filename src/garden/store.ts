@@ -58,10 +58,14 @@ export function createGardenStore(repo: GardenRepo): GardenStore {
     },
     load: reload,
     async addArea(name) {
+      // sortOrder = 현재 보이는 영역 수. ③엔 영역 삭제 UI가 없어 단조 증가가 보장된다.
+      // (영역 soft-delete 도입 시 tombstone과 sortOrder가 충돌 가능 → ④⑥에서 reorder로 해결.)
       const area = await repo.createArea(name, state.areas.length)
       await reload()
       return area
     },
+    /** 반환 Plant는 reload 전 객체라 photoId가 비어 있을 수 있다.
+     *  최신 상태(photoId 포함)는 getSnapshot().plants에서 읽을 것. */
     async addPlant(input) {
       const plant = await repo.createPlant({
         areaId: input.areaId,
