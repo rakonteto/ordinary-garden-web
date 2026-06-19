@@ -17,6 +17,13 @@
   --shadow-card: 0 4px 20px rgba(40, 60, 40, 0.08);
   --blur-glass: 14px;
   --tabbar-height: 64px;
+  --color-water-blue: #2f6fb0;
+  --color-healthy: #4d6a44;
+  --color-alert: #a8651b;
+  --color-very-bad: #b0392f;
+  --color-gold: #c9a227;
+  --color-temp-high: #b0503f;
+  --color-temp-low: #2f6fb0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -30,6 +37,13 @@
     --color-text-weak: #a7b0a2;
     --color-accent: #34412f;
     --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.3);
+    --color-water-blue: #a8cbed;
+    --color-healthy: #bcd69d;
+    --color-alert: #e6c08c;
+    --color-very-bad: #e0897f;
+    --color-gold: #e6cf86;
+    --color-temp-high: #e6a08c;
+    --color-temp-low: #a8cbed;
   }
 }
 
