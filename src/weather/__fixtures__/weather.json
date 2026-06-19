@@ -1,0 +1,18 @@
+{
+  "current": { "tempC": 24.4, "humidity": 77, "precip1h": 0, "precipType": "none", "windDeg": 108, "windSpeed": 0.6, "sky": "cloudy" },
+  "hourly": [
+    { "time": "2026-06-19T09:00:00+09:00", "tempC": 25, "pop": 30, "precipType": "none", "precipMm": 0, "sky": "cloudy" },
+    { "time": "2026-06-19T10:00:00+09:00", "tempC": 27, "pop": 30, "precipType": "none", "precipMm": 0, "sky": "cloudy" },
+    { "time": "2026-06-19T15:00:00+09:00", "tempC": 28, "pop": 60, "precipType": "rain", "precipMm": 1.2, "sky": "partly" }
+  ],
+  "daily": [
+    { "date": "2026-06-19", "minC": null, "maxC": 30, "pop": 60, "sky": "partly" },
+    { "date": "2026-06-20", "minC": 21, "maxC": 25, "pop": 60, "sky": "cloudy" },
+    { "date": "2026-06-21", "minC": 19, "maxC": 27, "pop": 30, "sky": "partly" },
+    { "date": "2026-06-22", "minC": 19, "maxC": 27, "pop": 30, "sky": "cloudy" },
+    { "date": "2026-06-23", "minC": null, "maxC": null, "pop": 20, "sky": "partly" }
+  ],
+  "alerts": [],
+  "airQuality": { "pm10": 23, "pm10Grade": 1, "pm25": 18, "pm25Grade": 1, "khai": 50, "khaiGrade": 1 },
+  "meta": { "generatedAt": "2026-06-18T23:27:59.958Z", "sources": ["KMA", "AirKorea"], "locationLabel": "보통의정원" }
+}
