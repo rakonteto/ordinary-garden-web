@@ -43,4 +43,13 @@ describe('Sheet', () => {
     await userEvent.keyboard('{Escape}')
     expect(onClose).toHaveBeenCalled()
   })
+
+  it('내부 클릭은 닫지 않고, 백드롭 클릭은 닫는다', async () => {
+    const { onClose } = setup()
+    await userEvent.click(screen.getByText('본문'))
+    expect(onClose).not.toHaveBeenCalled()
+    const backdrop = screen.getByRole('dialog').parentElement as HTMLElement
+    await userEvent.click(backdrop)
+    expect(onClose).toHaveBeenCalled()
+  })
 })
