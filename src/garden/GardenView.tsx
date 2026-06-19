@@ -34,7 +34,7 @@ export default function GardenView() {
         <>
           <div className="garden__filters">
             <FilterChips areas={areas} selectedAreaId={activeAreaId} onSelect={setSelectedAreaId} />
-            <button type="button" className="garden__add-area" onClick={() => setSheet('area')}>
+            <button type="button" className="garden__add-area" aria-label="영역 추가" onClick={() => setSheet('area')}>
               + 영역
             </button>
           </div>
