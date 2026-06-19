@@ -15,7 +15,7 @@ export interface Area extends BaseRecord {
 export interface Plant extends BaseRecord {
   areaId: string
   name: string
-  lightRequirement: LightRequirement
+  lightRequirement?: LightRequirement
   photoId?: string
   datePlanted?: number
   note?: string
