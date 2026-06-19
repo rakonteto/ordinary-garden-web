@@ -22,7 +22,7 @@ export default function AirQualityCard({ airQuality }: { airQuality: AirQuality 
       <h2 className="wd-section__title">미세먼지</h2>
       <div className="aqc">
         <Col title="PM10" value={airQuality.pm10} grade={airQuality.pm10Grade} />
-        <Col title="초미세먼지" value={airQuality.pm25} grade={airQuality.pm25Grade} />
+        <Col title="PM2.5" value={airQuality.pm25} grade={airQuality.pm25Grade} />
         <Col title="통합지수" value={airQuality.khai} grade={airQuality.khaiGrade} />
       </div>
       <p className="aqc__src">출처 · 에어코리아(한국환경공단)</p>
