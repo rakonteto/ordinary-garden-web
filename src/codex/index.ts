@@ -11,6 +11,10 @@ import { fruitBerry } from './plants/fruitBerry'
 import { fruitTree } from './plants/fruitTree'
 import { herb } from './plants/herb'
 import { foliage } from './plants/foliage'
+import { flowerBulb } from './plants/flowerBulb'
+import { flowerPerennial } from './plants/flowerPerennial'
+import { flowerAnnual } from './plants/flowerAnnual'
+import { flowerWoody } from './plants/flowerWoody'
 
 export type { CodexCategory, CodexGenus, CodexSpecies, CodexVariety } from './types'
 
@@ -24,4 +28,8 @@ export const codex: CodexGenus[] = [
   ...fruitTree,
   ...herb,
   ...foliage,
+  ...flowerBulb,
+  ...flowerPerennial,
+  ...flowerAnnual,
+  ...flowerWoody,
 ]
