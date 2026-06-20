@@ -42,9 +42,11 @@ export interface CodexSpecies {
   name: string // 종명 (예: "큰잎수국")
   scientificName: string // 예: "Hydrangea macrophylla"
   category: CodexCategory
-  form: string // 수형·크기 (예: "낙엽 관목, 높이 0.9~1.8m")
-  bloomType: string // 개화 습성 — 전정의 근거 (예: "묵은 가지(전년지)에 핀다")
-  hardiness: string // 우리 지역(중부) 노지 월동
+  form: string // 수형·생육형·크기 (예: "낙엽 관목, 높이 0.9~1.8m" / "한해살이 잎채소")
+  // 개화 습성 — 화훼는 전정의 근거(예: "묵은 가지에 핀다"). 채소·과수는 해당 시에만
+  // (추대·결실 특성 등), 없으면 비운다.
+  bloomType?: string
+  hardiness: string // 우리 지역(중부) 내한성·노지 월동(채소는 재배 적기·월동 여부)
   soil: string // 토양 (수국은 pH↔꽃색 관계 포함)
   water: string
   light: string

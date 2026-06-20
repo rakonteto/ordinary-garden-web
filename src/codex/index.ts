@@ -5,7 +5,9 @@ import type { CodexGenus } from './types'
 import { hydrangea } from './plants/hydrangea'
 import { peony } from './plants/peony'
 import { rose } from './plants/rose'
+import { vegetableLeaf } from './plants/vegetableLeaf'
+import { vegetableFruit } from './plants/vegetableFruit'
 
 export type { CodexCategory, CodexGenus, CodexSpecies, CodexVariety } from './types'
 
-export const codex: CodexGenus[] = [hydrangea, peony, rose]
+export const codex: CodexGenus[] = [hydrangea, peony, rose, ...vegetableLeaf, ...vegetableFruit]
