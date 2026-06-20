@@ -15,6 +15,8 @@ import { flowerBulb } from './plants/flowerBulb'
 import { flowerPerennial } from './plants/flowerPerennial'
 import { flowerAnnual } from './plants/flowerAnnual'
 import { flowerWoody } from './plants/flowerWoody'
+import { succulent } from './plants/succulent'
+import { ornamentalWoody } from './plants/ornamentalWoody'
 
 export type { CodexCategory, CodexGenus, CodexSpecies, CodexVariety } from './types'
 
@@ -32,4 +34,6 @@ export const codex: CodexGenus[] = [
   ...flowerPerennial,
   ...flowerAnnual,
   ...flowerWoody,
+  ...succulent,
+  ...ornamentalWoody,
 ]
