@@ -3,7 +3,8 @@
 
 import type { CodexGenus } from './types'
 import { hydrangea } from './plants/hydrangea'
+import { peony } from './plants/peony'
 
 export type { CodexCategory, CodexGenus, CodexSpecies, CodexVariety } from './types'
 
-export const codex: CodexGenus[] = [hydrangea]
+export const codex: CodexGenus[] = [hydrangea, peony]

@@ -53,6 +53,9 @@ export interface CodexSpecies {
   season: string // 개화/수확 시기
   tip: string // 핵심 팁
   varieties?: CodexVariety[]
+  // 카드로 따로 두지 않은, 이 종·계통의 그 밖의 한국 유통 품종(망라용 이름 목록).
+  // 재배·관리가 종과 같아 카드가 불필요하지만 "빠짐없이" 담기 위한 칸.
+  otherCultivars?: string[]
 }
 
 /** 속(genus) 묶음 — 통칭으로 종들을 묶는다. */
