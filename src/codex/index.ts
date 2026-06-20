@@ -9,6 +9,8 @@ import { vegetableLeaf } from './plants/vegetableLeaf'
 import { vegetableFruit } from './plants/vegetableFruit'
 import { fruitBerry } from './plants/fruitBerry'
 import { fruitTree } from './plants/fruitTree'
+import { herb } from './plants/herb'
+import { foliage } from './plants/foliage'
 
 export type { CodexCategory, CodexGenus, CodexSpecies, CodexVariety } from './types'
 
@@ -20,4 +22,6 @@ export const codex: CodexGenus[] = [
   ...vegetableFruit,
   ...fruitBerry,
   ...fruitTree,
+  ...herb,
+  ...foliage,
 ]
