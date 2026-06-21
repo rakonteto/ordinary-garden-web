@@ -17,7 +17,7 @@ export default function PlantDetail() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
   const { areas, plants, loaded, editPlant, archivePlant, deletePlant } = useGarden()
-  const { entries, addEntry, updateEntry, deleteEntry } = usePlantJournal(id ?? '')
+  const { entries, loaded: journalLoaded, addEntry, updateEntry, deleteEntry } = usePlantJournal(id ?? '')
 
   // 모달 상태: 'edit' | null | JournalEntry(편집 대상) | 'add'(일지 추가)
   const [editOpen, setEditOpen] = useState(false)
@@ -126,7 +126,8 @@ export default function PlantDetail() {
           </button>
         </div>
 
-        {entries.length === 0 ? (
+        {/* 일지 로딩 완료 후에만 빈상태 안내 표시(로딩 중 깜빡임 방지) */}
+        {journalLoaded && entries.length === 0 ? (
           <p className="pdetail__empty">첫 일지를 남겨보세요</p>
         ) : (
           <div className="pdetail__entries">

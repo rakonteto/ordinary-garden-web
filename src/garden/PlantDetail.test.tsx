@@ -39,7 +39,8 @@ describe('PlantDetail', () => {
     await renderAt(plant.id)
     await waitFor(() => expect(screen.getByRole('heading', { name: '바질' })).toBeInTheDocument())
     expect(screen.getByText('베란다')).toBeInTheDocument()
-    expect(screen.getByText('첫 일지를 남겨보세요')).toBeInTheDocument()
+    // journalLoaded=true가 될 때까지 기다린 후 빈상태 안내 확인
+    await waitFor(() => expect(screen.getByText('첫 일지를 남겨보세요')).toBeInTheDocument())
   })
 
   it('존재하지 않는 식물 id로 접근하면 "식물을 찾을 수 없어요"를 표시한다', async () => {
@@ -58,11 +59,11 @@ describe('PlantDetail', () => {
 
     // 식물 이름이 렌더된 뒤 편집 버튼 클릭
     await waitFor(() => expect(screen.getByRole('heading', { name: '상추' })).toBeInTheDocument())
-    fireEvent.click(screen.getByRole('button', { name: '식물 편집' }))
+    await fireEvent.click(screen.getByRole('button', { name: '식물 편집' }))
 
     // EditPlantSheet 열림 확인 후 보관 클릭
     await waitFor(() => expect(screen.getByText('보관')).toBeInTheDocument())
-    fireEvent.click(screen.getByText('보관'))
+    await fireEvent.click(screen.getByText('보관'))
 
     // /garden route로 이동했는지 확인
     await waitFor(() => expect(screen.getByText('정원')).toBeInTheDocument())
@@ -76,7 +77,7 @@ describe('PlantDetail', () => {
 
     // 식물 이름이 렌더된 뒤 일지 추가 버튼(+) 클릭
     await waitFor(() => expect(screen.getByRole('heading', { name: '토마토' })).toBeInTheDocument())
-    fireEvent.click(screen.getByRole('button', { name: '일지 추가' }))
+    await fireEvent.click(screen.getByRole('button', { name: '일지 추가' }))
 
     // JournalEntrySheet 타이틀 "일지 작성" 확인
     await waitFor(() =>
