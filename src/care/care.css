@@ -10,3 +10,18 @@
   border: 2px solid var(--color-primary); background: transparent; cursor: pointer; flex-shrink: 0;
 }
 .care-row__check:active { background: var(--color-primary); }
+
+/* 오늘 할 일 — 카드 */
+.care-card { padding: var(--space-4, 16px); border-radius: var(--radius-card, 18px); }
+.care-card__head { display: flex; align-items: center; gap: var(--space-2, 8px); }
+.care-card__icon { color: var(--color-primary); }
+.care-card__label { color: var(--color-text); font-weight: 600; flex: 1; }
+.care-card__count { color: var(--color-text-weak); font-size: 0.85rem; }
+.care-card__advice {
+  display: flex; align-items: center; gap: 6px; margin-top: var(--space-2, 8px);
+  padding: 6px 10px; border-radius: 10px;
+  color: var(--color-water-blue); background: rgba(47, 111, 176, 0.12);
+  font-size: 0.82rem;
+}
+.care-card__rows { margin-top: var(--space-2, 8px); }
+.care-card__rows > .care-row + .care-row { border-top: 1px solid var(--color-surface-border); }
