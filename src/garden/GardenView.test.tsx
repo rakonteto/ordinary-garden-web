@@ -1,5 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import { render, screen } from '@testing-library/react'
+import { MemoryRouter } from 'react-router-dom'
 import userEvent from '@testing-library/user-event'
 import { db } from '../data/db'
 import { gardenStore } from './useGarden'
@@ -14,12 +15,12 @@ beforeEach(async () => {
 
 describe('GardenView', () => {
   it('영역이 없으면 빈 상태를 보여준다', async () => {
-    render(<GardenView />)
+    render(<MemoryRouter><GardenView /></MemoryRouter>)
     expect(await screen.findByText('정원에 영역을 추가해보세요')).toBeInTheDocument()
   })
 
   it('빈 상태에서 영역을 추가하면 필터칩과 섹션이 나타난다', async () => {
-    render(<GardenView />)
+    render(<MemoryRouter><GardenView /></MemoryRouter>)
     await userEvent.click(await screen.findByRole('button', { name: '영역 추가' }))
     await userEvent.type(screen.getByLabelText('영역 이름'), '베란다')
     await userEvent.click(screen.getByRole('button', { name: '저장' }))
@@ -28,7 +29,7 @@ describe('GardenView', () => {
 
   it('영역이 있으면 FAB로 식물을 추가해 카드가 나타난다', async () => {
     await gardenStore.addArea('베란다')
-    render(<GardenView />)
+    render(<MemoryRouter><GardenView /></MemoryRouter>)
     await userEvent.click(await screen.findByRole('button', { name: '식물 추가' }))
     await userEvent.type(screen.getByLabelText('이름'), '바질')
     await userEvent.click(screen.getByRole('button', { name: '저장' }))

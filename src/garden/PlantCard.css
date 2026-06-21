@@ -1,3 +1,8 @@
+.plant-card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
 .plant-card {
   display: flex;
   flex-direction: column;
