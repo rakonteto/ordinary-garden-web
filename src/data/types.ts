@@ -23,18 +23,30 @@ export interface Plant extends BaseRecord {
   sortOrder: number
 }
 
+// 일지에 박제하는 그날 날씨(WeatherBundle 핵심 필드 부분집합). 집 위치 라벨은 프라이버시상 제외.
+export interface WeatherSnapshot {
+  tempC: number | null
+  feelsLikeC: number | null
+  humidity: number | null
+  sky: string | null       // 'clear'|'partly'|'cloudy'|null
+  precipType: string       // 'none'|'rain'|'rainSnow'|'snow'
+  airGrade: number | null  // 통합 미세먼지 등급(khai>pm10>pm25)
+  capturedAt: number       // epoch ms
+}
+
 export interface JournalEntry extends BaseRecord {
   plantId: string
   date: number
   note: string
-  tags: string[]            // WorkType 세트는 일지 단계(④)에서 enum 확정
-  weatherSnapshot?: unknown // 그날 날씨 박제(JSON), 일지 단계에서 타입 확정
+  tags: string[]                       // WorkType 식별자(다중)
+  weatherSnapshot?: WeatherSnapshot
 }
 
 export interface JournalPhoto extends BaseRecord {
-  ownerId: string           // entry id 또는 plant 대표사진
+  ownerId: string          // entry id 또는 plant 대표사진
   blob?: Blob
   driveFileId?: string
+  sortOrder?: number       // 일지 다중 사진 표시 순서(대표사진은 생략)
 }
 
 export interface CareRule extends BaseRecord {
