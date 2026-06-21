@@ -1,0 +1,114 @@
+/* 일지 카드 — glass 카드 스타일 (비인터랙티브 표시 컨테이너) */
+.journal-entry-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-surface-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(var(--blur-glass));
+  -webkit-backdrop-filter: blur(var(--blur-glass));
+}
+
+/* 헤더: 날짜 + 날씨 배지 가로 정렬 */
+.journal-entry-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.journal-entry-card__date {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-text);
+}
+
+/* 날씨 배지 — --color-text on --color-accent: 라이트 #20271f/#c9d6bf ≈7.0:1, 다크 #e7ece4/#34412f ≈7.3:1 (WCAG AA 충족) */
+.journal-entry-card__weather-badge {
+  font-size: 0.78rem;
+  color: var(--color-text);
+  background: var(--color-accent);
+  border-radius: var(--radius-chip);
+  padding: 2px 10px;
+}
+
+/* 태그 칩 묶음 */
+.journal-entry-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.journal-entry-card__tag-chip {
+  font-size: 0.8rem;
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  border-radius: var(--radius-chip);
+  padding: 3px 12px;
+  font-weight: 500;
+}
+
+/* 메모 */
+.journal-entry-card__note {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--color-text);
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+/* 사진 썸네일 가로 스크롤 */
+.journal-entry-card__photos {
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+  padding-bottom: var(--space-1);
+  scrollbar-width: thin;
+}
+
+.journal-entry-card__thumb {
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: var(--radius-card);
+  border: 1.5px solid var(--color-accent);
+}
+
+/* 푸터 액션 영역 — 편집·삭제 버튼이 형제 관계로 우측 정렬 */
+.journal-entry-card__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-1);
+}
+
+/* 편집·삭제 공통 베이스 */
+.journal-entry-card__edit-btn,
+.journal-entry-card__delete-btn {
+  font-size: 0.8rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-chip);
+  transition: color 0.15s;
+}
+
+.journal-entry-card__edit-btn {
+  color: var(--color-primary);
+}
+
+.journal-entry-card__edit-btn:hover {
+  color: var(--color-primary-weak);
+}
+
+.journal-entry-card__delete-btn {
+  color: var(--color-text-weak);
+}
+
+.journal-entry-card__delete-btn:hover {
+  color: var(--color-very-bad);
+}
