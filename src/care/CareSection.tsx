@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default function CareSection({ plantId }: Props) {
-  const { rules, addRule, updateRule, deleteRule } = useCare()
+  const { rules, loaded, addRule, updateRule, deleteRule } = useCare()
   // false=닫힘, null=추가, CareRule=편집
   const [open, setOpen] = useState<false | null | CareRule>(false)
 
@@ -27,7 +27,7 @@ export default function CareSection({ plantId }: Props) {
         </button>
       </div>
 
-      {plantRules.length === 0 ? (
+      {loaded && plantRules.length === 0 ? (
         <p className="care-section__empty">케어 일정을 추가해보세요</p>
       ) : (
         <div className="care-section__rules">

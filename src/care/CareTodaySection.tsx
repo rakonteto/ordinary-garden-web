@@ -13,8 +13,9 @@ import './care.css'
 
 export default function CareTodaySection() {
   const [seg, setSeg] = useState(0)
-  const { rules, complete, snooze } = useCare()
-  const { plants, areas } = useGarden()
+  const { rules, loaded: careLoaded, complete, snooze } = useCare()
+  const { plants, areas, loaded: gardenLoaded } = useGarden()
+  const ready = careLoaded && gardenLoaded
   const { bundle } = useWeather()
 
   const groups = dueGroups(rules, plants, areas)
@@ -28,7 +29,7 @@ export default function CareTodaySection() {
       </div>
 
       {seg === 0 ? (
-        groups.length === 0 ? (
+        ready && groups.length === 0 ? (
           <p className="care-today__empty">오늘 할 일이 없어요</p>
         ) : (
           <div className="care-today__cards">
@@ -44,7 +45,7 @@ export default function CareTodaySection() {
             ))}
           </div>
         )
-      ) : upcomingItems.length === 0 ? (
+      ) : ready && upcomingItems.length === 0 ? (
         <p className="care-today__empty">예정된 케어가 없어요</p>
       ) : (
         <div className="care-card glass care-upcoming">
