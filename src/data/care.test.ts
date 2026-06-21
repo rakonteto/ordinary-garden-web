@@ -27,6 +27,15 @@ describe('listRulesByPlant', () => {
     const rules = await listRulesByPlant('p1')
     expect(rules.map((r) => r.careType)).toEqual(['water', 'fertilize'])  // createdAt 100, 200 순
   })
+  it('softDeleted 규칙은 제외', async () => {
+    const r1 = await createRule({ plantId: 'p1', careType: 'water', intervalDays: 3, weatherAware: true }, 100)
+    const r2 = await createRule({ plantId: 'p1', careType: 'fertilize', intervalDays: 14, weatherAware: false }, 200)
+    await softDeleteRule(r1.id)
+    const rules = await listRulesByPlant('p1')
+    expect(rules).toHaveLength(1)
+    expect(rules[0].id).toBe(r2.id)
+    expect(rules[0].careType).toBe('fertilize')
+  })
 })
 
 describe('updateRule', () => {
