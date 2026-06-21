@@ -2,20 +2,20 @@
   display: inline-flex;
   gap: 2px;
   padding: 2px;
-  background: var(--color-sage, rgba(120, 140, 110, 0.15));
-  border-radius: var(--radius-pill, 999px);
+  background: var(--color-accent);
+  border-radius: var(--radius-chip);
 }
 .seg__btn {
   border: none;
   background: transparent;
-  color: var(--color-muted, #6b7280);
+  color: var(--color-text-weak);
   font-size: 0.85rem;
   padding: 4px 12px;
-  border-radius: var(--radius-pill, 999px);
+  border-radius: var(--radius-chip);
   cursor: pointer;
 }
 .seg__btn[aria-pressed='true'] {
-  background: var(--color-surface, #fff);
-  color: var(--color-ink, #1f2937);
+  background: var(--color-surface);
+  color: var(--color-text);
   font-weight: 600;
 }
