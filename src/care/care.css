@@ -52,3 +52,20 @@
 .care-rule__rain { color: var(--color-water-blue); }
 .care-rule__interval { color: var(--color-text-weak); font-size: 0.8rem; }
 .care-rule__due { color: var(--color-text-weak); font-size: 0.82rem; flex-shrink: 0; }
+
+/* 케어 추가/편집 폼 */
+.care-form { display: flex; flex-direction: column; gap: var(--space-3); }
+.care-form__label { color: var(--color-text-weak); font-size: 0.82rem; }
+.care-form__types { display: flex; gap: var(--space-2); }
+.care-form__type {
+  flex: 1; padding: 10px; border: 1px solid var(--color-surface-border);
+  background: transparent; border-radius: 10px; color: var(--color-text); cursor: pointer;
+}
+.care-form__type[aria-pressed='true'] {
+  background: var(--color-primary); color: var(--color-on-primary); border-color: transparent;
+}
+.care-form__interval { display: flex; align-items: center; gap: var(--space-2); }
+.care-form__interval input { width: 88px; padding: 8px; border-radius: 10px; border: 1px solid var(--color-surface-border); }
+.care-form__toggle { display: flex; align-items: center; gap: var(--space-2); color: var(--color-text); }
+.care-form__hint { color: var(--color-text-weak); font-size: 0.78rem; margin: 0; }
+.care-form__delete { margin-top: var(--space-2); padding: 10px; border: none; background: transparent; color: var(--color-alert); cursor: pointer; }
