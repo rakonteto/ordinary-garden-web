@@ -4,6 +4,7 @@ import './TabBar.css'
 const TABS = [
   { to: '/today', label: '오늘' },
   { to: '/garden', label: '내 정원' },
+  { to: '/codex', label: '도감' },
   { to: '/settings', label: '설정' },
 ]
 

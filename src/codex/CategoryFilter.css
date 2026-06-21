@@ -1,0 +1,25 @@
+.catfilter {
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+  padding-bottom: var(--space-1);
+  scrollbar-width: none;
+}
+.catfilter::-webkit-scrollbar {
+  display: none;
+}
+.catfilter__chip {
+  flex: 0 0 auto;
+  border: 1px solid var(--color-surface-border);
+  background: var(--color-surface);
+  color: var(--color-text-weak);
+  border-radius: var(--radius-chip);
+  padding: 6px 14px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.catfilter__chip--on {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}

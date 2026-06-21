@@ -3,6 +3,8 @@ import TabBar from './ui/TabBar'
 import TodayRoute from './routes/TodayRoute'
 import GardenRoute from './routes/GardenRoute'
 import SettingsRoute from './routes/SettingsRoute'
+import CodexRoute from './routes/CodexRoute'
+import CodexDetailRoute from './routes/CodexDetailRoute'
 import WeatherDetail from './weather/WeatherDetail'
 
 export default function App() {
@@ -13,6 +15,8 @@ export default function App() {
           <Route path="/today" element={<TodayRoute />} />
           <Route path="/weather" element={<WeatherDetail />} />
           <Route path="/garden" element={<GardenRoute />} />
+          <Route path="/codex" element={<CodexRoute />} />
+          <Route path="/codex/:speciesId" element={<CodexDetailRoute />} />
           <Route path="/settings" element={<SettingsRoute />} />
           <Route path="*" element={<Navigate to="/today" replace />} />
         </Routes>

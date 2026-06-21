@@ -1,0 +1,56 @@
+.codex {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  padding-bottom: calc(var(--tabbar-height) + 90px);
+}
+.codex__title {
+  font-size: 1.6rem;
+}
+.codex__search {
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--color-surface-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: 1rem;
+}
+.codex__count {
+  font-size: 0.85rem;
+  color: var(--color-text-weak);
+  margin: 0;
+}
+.codex__empty {
+  color: var(--color-text-weak);
+  padding-top: var(--space-5);
+  text-align: center;
+}
+.codex__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+.codex__section-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 1.05rem;
+}
+.codex__section-count {
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: var(--color-text-weak);
+  background: var(--color-accent);
+  border-radius: var(--radius-chip);
+  padding: 1px 9px;
+}
+.codex__grid {
+  display: grid;
+  /* minmax(0,1fr): 그리드 칸이 0까지 줄어들 수 있게 해 긴 학명(nowrap)이
+     칸을 밀어내며 뷰포트를 넘기는 것을 막는다(내부 ellipsis가 작동하도록). */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-3);
+}
