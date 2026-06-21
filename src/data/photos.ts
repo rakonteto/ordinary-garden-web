@@ -5,10 +5,11 @@ import type { JournalPhoto } from './types'
 export interface NewPhoto {
   ownerId: string
   blob: Blob
+  sortOrder?: number
 }
 
-export async function putPhoto({ ownerId, blob }: NewPhoto): Promise<JournalPhoto> {
-  const photo: JournalPhoto = { ...baseFields(Date.now()), ownerId, blob }
+export async function putPhoto({ ownerId, blob, sortOrder }: NewPhoto): Promise<JournalPhoto> {
+  const photo: JournalPhoto = { ...baseFields(Date.now()), ownerId, blob, sortOrder }
   await db.journalPhotos.add(photo)
   return photo
 }
@@ -23,4 +24,11 @@ export async function softDeletePhoto(id: string): Promise<void> {
   const existing = await db.journalPhotos.get(id)
   if (!existing) return
   await db.journalPhotos.put({ ...existing, deleted: true, blob: undefined, updatedAt: Date.now() })
+}
+
+export async function listPhotosByOwner(ownerId: string): Promise<JournalPhoto[]> {
+  const all = await db.journalPhotos.where('ownerId').equals(ownerId).toArray()
+  return all
+    .filter((p) => !p.deleted && p.blob)
+    .sort((a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0) || a.updatedAt - b.updatedAt)
 }
