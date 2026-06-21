@@ -1,0 +1,12 @@
+/* 오늘 할 일 — 행 */
+.care-row { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-2) 0; }
+.care-row__thumb { width: 40px; height: 40px; border-radius: 10px; object-fit: cover; flex-shrink: 0; }
+.care-row__text { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
+.care-row__name { color: var(--color-text); font-weight: 600; }
+.care-row__area { color: var(--color-text-weak); font-size: 0.8rem; }
+.care-row__snooze { border: none; background: transparent; color: var(--color-text-weak); font-size: 1.1rem; cursor: pointer; padding: 4px; }
+.care-row__check {
+  width: 26px; height: 26px; border-radius: 50%;
+  border: 2px solid var(--color-primary); background: transparent; cursor: pointer; flex-shrink: 0;
+}
+.care-row__check:active { background: var(--color-primary); }
