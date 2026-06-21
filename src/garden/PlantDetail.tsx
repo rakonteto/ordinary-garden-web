@@ -11,6 +11,7 @@ import { journalDateLabel } from '../journal/format'
 import type { JournalEntry } from '../data/types'
 import type { EditPlantInput } from './store'
 import type { EntryInput } from '../journal/usePlantJournal'
+import CareSection from '../care/CareSection'
 import './PlantDetail.css'
 
 export default function PlantDetail() {
@@ -111,6 +112,9 @@ export default function PlantDetail() {
           )}
         </div>
       </header>
+
+      {/* 케어 섹션 */}
+      <CareSection plantId={plant.id} />
 
       {/* 재배일지 섹션 */}
       <div className="pdetail__journal">

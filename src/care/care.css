@@ -53,6 +53,17 @@
 .care-rule__interval { color: var(--color-text-weak); font-size: 0.8rem; }
 .care-rule__due { color: var(--color-text-weak); font-size: 0.82rem; flex-shrink: 0; }
 
+/* 식물 상세 — 케어 섹션 */
+.care-section { display: flex; flex-direction: column; gap: var(--space-2); padding: 0 var(--space-4); }
+.care-section__head { display: flex; align-items: center; justify-content: space-between; }
+.care-section__title { font-size: 1.05rem; color: var(--color-text); margin: 0; }
+.care-section__add {
+  width: 32px; height: 32px; border: none; border-radius: 50%; cursor: pointer; font-size: 1.2rem;
+  background: var(--color-accent); color: var(--color-primary);
+}
+.care-section__rules { display: flex; flex-direction: column; gap: var(--space-2); }
+.care-section__empty { color: var(--color-text-weak); font-size: 0.9rem; }
+
 /* 케어 추가/편집 폼 */
 .care-form { display: flex; flex-direction: column; gap: var(--space-3); }
 .care-form__label { color: var(--color-text-weak); font-size: 0.82rem; }
