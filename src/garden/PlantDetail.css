@@ -1,0 +1,157 @@
+/* PlantDetail 식물 상세 화면 */
+
+.pdetail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  padding-bottom: calc(var(--tabbar-height) + 90px);
+}
+
+/* 상단 네비게이션: 뒤로가기 + 편집 버튼 */
+.pdetail__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pdetail__back {
+  align-self: flex-start;
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+  padding: var(--space-1) 0;
+}
+
+.pdetail__edit-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.25rem;
+  padding: var(--space-2);
+  color: var(--color-primary);
+  border-radius: var(--radius-chip);
+  line-height: 1;
+}
+
+.pdetail__edit-btn:hover {
+  background: var(--color-accent);
+}
+
+/* 히어로: 식물 사진 (큰 사이즈) */
+.pdetail__hero {
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: var(--color-accent);
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pdetail__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 제목 + 정보칩 헤더 */
+.pdetail__head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  backdrop-filter: blur(var(--blur-glass));
+  -webkit-backdrop-filter: blur(var(--blur-glass));
+  border: 1px solid var(--color-surface-border);
+  box-shadow: var(--shadow-card);
+}
+
+.pdetail__name {
+  font-size: 1.5rem;
+  margin: 0;
+  color: var(--color-text);
+}
+
+.pdetail__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.pdetail__chip {
+  font-size: 0.82rem;
+  color: var(--color-primary);
+  background: var(--color-accent);
+  border-radius: var(--radius-chip);
+  padding: 3px 10px;
+}
+
+.pdetail__chip--area {
+  color: var(--color-text-weak);
+  background: var(--color-surface);
+  border: 1px solid var(--color-surface-border);
+}
+
+/* 재배일지 섹션 */
+.pdetail__journal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.pdetail__journal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pdetail__journal-title {
+  font-size: 1.1rem;
+  margin: 0;
+  color: var(--color-text);
+}
+
+.pdetail__add-btn {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  border: none;
+  cursor: pointer;
+  font-size: 1.25rem;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-chip);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.pdetail__add-btn:hover {
+  opacity: 0.88;
+}
+
+/* 빈 일지 상태 */
+.pdetail__empty {
+  color: var(--color-text-weak);
+  text-align: center;
+  padding: var(--space-5) 0;
+  margin: 0;
+}
+
+/* 일지 카드 목록 */
+.pdetail__entries {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* 로딩·없음 안내 */
+.pdetail__loading,
+.pdetail__notfound {
+  color: var(--color-text-weak);
+  margin: 0;
+}
