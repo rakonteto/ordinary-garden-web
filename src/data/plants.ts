@@ -3,6 +3,7 @@ import { baseFields } from './record'
 import type { LightRequirement, Plant } from './types'
 import { listEntriesByPlant, softDeleteEntry } from './journal'
 import { listPhotosByOwner, softDeletePhoto } from './photos'
+import { softDeleteRulesByPlant } from './care'
 
 export interface NewPlantFields {
   areaId: string
@@ -88,6 +89,9 @@ export async function softDeletePlantDeep(id: string): Promise<void> {
     }
     await softDeleteEntry(entry.id)
   }
+
+  // 케어 규칙 cascade
+  await softDeleteRulesByPlant(id)
 
   // 식물 대표사진
   const plant = await db.plants.get(id)

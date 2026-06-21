@@ -11,11 +11,13 @@ import {
 } from './plants'
 import { createEntry, listEntriesByPlant } from './journal'
 import { putPhoto, listPhotosByOwner } from './photos'
+import { createRule, listActiveRules } from './care'
 
 beforeEach(async () => {
   await db.plants.clear()
   await db.journalEntries.clear()
   await db.journalPhotos.clear()
+  await db.careRules.clear()
 })
 
 describe('plants 리포지토리', () => {
@@ -113,5 +115,14 @@ describe('softDeletePlantDeep — cascade 삭제', () => {
     const plant = await createPlant({ areaId: 'a1', name: '민트' })
     await softDeletePlantDeep(plant.id)
     await expect(softDeletePlantDeep(plant.id)).resolves.not.toThrow()
+  })
+
+  it('softDeletePlantDeep는 식물의 케어 규칙도 cascade soft-delete', async () => {
+    const plant = await createPlant({ areaId: 'a1', name: '바질이' })
+    await createRule({ plantId: plant.id, careType: 'water', intervalDays: 3, weatherAware: true })
+    await createRule({ plantId: plant.id, careType: 'fertilize', intervalDays: 14, weatherAware: false })
+    await softDeletePlantDeep(plant.id)
+    const rules = await listActiveRules()
+    expect(rules.filter((r) => r.plantId === plant.id)).toHaveLength(0)
   })
 })
