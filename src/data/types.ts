@@ -56,4 +56,5 @@ export interface CareRule extends BaseRecord {
   lastCompletedAt?: number
   nextDueAt: number
   weatherAware: boolean
+  createdAt: number
 }
