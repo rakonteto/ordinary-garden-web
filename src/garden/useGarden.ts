@@ -1,10 +1,11 @@
 import { useEffect, useSyncExternalStore } from 'react'
 import { createGardenStore, type GardenState, type AddPlantInput, type EditPlantInput } from './store'
 import { listAreas, createArea } from '../data/areas'
-import { listPlants, createPlant, updatePlant, archivePlant, softDeletePlant } from '../data/plants'
+import { listPlants, createPlant, updatePlant, archivePlant, softDeletePlantDeep } from '../data/plants'
 import { putPhoto } from '../data/photos'
 import type { Area, Plant } from '../data/types'
 
+// softDeletePlantDeep: 식물 삭제 시 일지·사진 cascade soft-delete
 export const gardenStore = createGardenStore({
   listAreas,
   createArea,
@@ -13,7 +14,7 @@ export const gardenStore = createGardenStore({
   updatePlant,
   putPhoto,
   archivePlant,
-  softDeletePlant,
+  softDeletePlant: softDeletePlantDeep,
 })
 
 let started = false

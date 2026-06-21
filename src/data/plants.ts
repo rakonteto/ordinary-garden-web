@@ -1,6 +1,8 @@
 import { db } from './db'
 import { baseFields } from './record'
 import type { LightRequirement, Plant } from './types'
+import { listEntriesByPlant, softDeleteEntry } from './journal'
+import { listPhotosByOwner, softDeletePhoto } from './photos'
 
 export interface NewPlantFields {
   areaId: string
@@ -66,4 +68,33 @@ export async function archivePlant(id: string): Promise<void> {
   const existing = await db.plants.get(id)
   if (!existing) return
   await db.plants.put({ ...existing, isArchived: true, updatedAt: Date.now() })
+}
+
+/**
+ * 식물과 그 식물에 속한 모든 일지·사진을 cascade soft-delete한다.
+ * - 일지 각각의 사진(listPhotosByOwner(entry.id)) → softDeletePhoto
+ * - 일지 → softDeleteEntry
+ * - 식물 대표사진(plant.photoId) → softDeletePhoto
+ * - 식물 → softDeletePlant
+ * 멱등: 이미 삭제된 식물이라도 오류 없이 동작한다.
+ */
+export async function softDeletePlantDeep(id: string): Promise<void> {
+  // 일지 전체 조회 후 각 일지의 사진 → 일지 순으로 cascade
+  const entries = await listEntriesByPlant(id)
+  for (const entry of entries) {
+    const photos = await listPhotosByOwner(entry.id)
+    for (const photo of photos) {
+      await softDeletePhoto(photo.id)
+    }
+    await softDeleteEntry(entry.id)
+  }
+
+  // 식물 대표사진
+  const plant = await db.plants.get(id)
+  if (plant?.photoId) {
+    await softDeletePhoto(plant.photoId)
+  }
+
+  // 마지막으로 식물 자체 tombstone
+  await softDeletePlant(id)
 }
