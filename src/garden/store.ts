@@ -17,6 +17,15 @@ export interface AddPlantInput {
   note?: string
 }
 
+export interface EditPlantInput {
+  name: string
+  areaId: string
+  lightRequirement?: Plant['lightRequirement']
+  datePlanted?: number
+  note?: string
+  photo?: Blob
+}
+
 export interface GardenRepo {
   listAreas(): Promise<Area[]>
   createArea(name: string, sortOrder: number): Promise<Area>
@@ -24,6 +33,8 @@ export interface GardenRepo {
   createPlant(fields: NewPlantFields): Promise<Plant>
   updatePlant(id: string, patch: PlantPatch): Promise<Plant>
   putPhoto(input: NewPhoto): Promise<{ id: string }>
+  archivePlant(id: string): Promise<void>
+  softDeletePlant(id: string): Promise<void>
 }
 
 export interface GardenStore {
@@ -32,6 +43,9 @@ export interface GardenStore {
   load(): Promise<void>
   addArea(name: string): Promise<Area>
   addPlant(input: AddPlantInput): Promise<Plant>
+  editPlant(id: string, input: EditPlantInput): Promise<void>
+  archivePlant(id: string): Promise<void>
+  deletePlant(id: string): Promise<void>
 }
 
 const EMPTY: GardenState = { areas: [], plants: [], loaded: false }
@@ -80,6 +94,28 @@ export function createGardenStore(repo: GardenRepo): GardenStore {
       }
       await reload()
       return plant
+    },
+    async editPlant(id, input) {
+      await repo.updatePlant(id, {
+        name: input.name,
+        areaId: input.areaId,
+        lightRequirement: input.lightRequirement,
+        datePlanted: input.datePlanted,
+        note: input.note,
+      })
+      if (input.photo) {
+        const photo = await repo.putPhoto({ ownerId: id, blob: input.photo })
+        await repo.updatePlant(id, { photoId: photo.id })
+      }
+      await reload()
+    },
+    async archivePlant(id) {
+      await repo.archivePlant(id)
+      await reload()
+    },
+    async deletePlant(id) {
+      await repo.softDeletePlant(id)
+      await reload()
     },
   }
 }
