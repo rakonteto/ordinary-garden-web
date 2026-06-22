@@ -68,9 +68,9 @@ export function createGisTokenProvider(clientId: string): TokenProvider {
     return client
   }
 
-  function requestToken(prompt: '' | 'consent'): Promise<string> {
-    return new Promise(async (resolve, reject) => {
-      const c = await ensureClient()
+  async function requestToken(prompt: '' | 'consent'): Promise<string> {
+    const c = await ensureClient()
+    return new Promise((resolve, reject) => {
       c.callback = (resp: google.accounts.oauth2.TokenResponse) => {
         if (resp.error || !resp.access_token) return reject(new Error(resp.error || 'no token'))
         cache.set(resp.access_token, Number(resp.expires_in ?? 3600))
