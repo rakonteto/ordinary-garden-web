@@ -48,4 +48,35 @@ describe('SyncStore', () => {
     expect(sync).not.toHaveBeenCalled()
     expect(store.getSnapshot().status).toBe('idle')
   })
+
+  it('trySilentSignIn 성공: signedIn=true + 동기화 호출', async () => {
+    const sync = vi.fn(async () => {})
+    let signed = false
+    const store = createSyncStore({
+      engine: engine(sync),
+      tokens: tokens({
+        getToken: vi.fn(async () => { signed = true; return 't' }),
+        isSignedIn: () => signed,
+      }),
+      configured: true,
+    })
+    await store.trySilentSignIn()
+    expect(store.getSnapshot().signedIn).toBe(true)
+    expect(sync).toHaveBeenCalled()
+  })
+
+  it('trySilentSignIn 실패: throw 없음 + signedIn=false + 동기화 미호출', async () => {
+    const sync = vi.fn(async () => {})
+    const store = createSyncStore({
+      engine: engine(sync),
+      tokens: tokens({
+        getToken: vi.fn(async () => { throw new Error('no session') }),
+        isSignedIn: () => false,
+      }),
+      configured: true,
+    })
+    await expect(store.trySilentSignIn()).resolves.toBeUndefined()
+    expect(store.getSnapshot().signedIn).toBe(false)
+    expect(sync).not.toHaveBeenCalled()
+  })
 })

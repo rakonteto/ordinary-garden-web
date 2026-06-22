@@ -15,6 +15,7 @@ export interface SyncStore {
   syncNow(): Promise<void>
   signIn(): Promise<void>
   signOut(): void
+  trySilentSignIn(): Promise<void>
 }
 
 export interface SyncStoreDeps {
@@ -63,6 +64,16 @@ export function createSyncStore(deps: SyncStoreDeps): SyncStore {
     signOut() {
       deps.tokens.signOut()
       set({ signedIn: false, lastSyncedAt: null })
+    },
+    async trySilentSignIn() {
+      if (!deps.configured) return
+      try {
+        await deps.tokens.getToken() // 무프롬프트(prompt:'') — 세션 있으면 팝업 없이 성공
+        set({ signedIn: deps.tokens.isSignedIn(), error: null })
+        if (deps.tokens.isSignedIn()) await runSync()
+      } catch {
+        // 세션 없음/차단 → 조용히 미로그인 유지(로그인 버튼). un-gestured consent 금지.
+      }
     },
   }
 }

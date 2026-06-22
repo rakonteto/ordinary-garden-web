@@ -31,7 +31,8 @@ export function initSyncTriggers(): void {
       if (document.visibilityState === 'visible') autoSync()
     })
   }
-  autoSync() // 콜드스타트 1회
+  // 콜드스타트: 무프롬프트 재인증 시도(spec §5) → 성공 시 자동 로그인+동기화, 실패면 조용히 로그인 버튼 유지
+  void syncStore.trySilentSignIn()
 
   // 로컬 쓰기 감지(일지·사진까지). sync 자신의 쓰기는 쓰기 시점 status==='syncing'이라 isUserWrite가 제외.
   const onWrite = () => { if (isUserWrite(syncStore.getSnapshot().status)) debounced.call() }
