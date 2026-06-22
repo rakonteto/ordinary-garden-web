@@ -68,11 +68,11 @@ export function createSyncStore(deps: SyncStoreDeps): SyncStore {
     async trySilentSignIn() {
       if (!deps.configured) return
       try {
-        await deps.tokens.getToken() // 무프롬프트(prompt:'') — 세션 있으면 팝업 없이 성공
+        await deps.tokens.getToken() // cache-only: 저장된 유효 토큰 있으면 성공, 없으면 throw(팝업 없음)
         set({ signedIn: deps.tokens.isSignedIn(), error: null })
         if (deps.tokens.isSignedIn()) await runSync()
       } catch {
-        // 세션 없음/차단 → 조용히 미로그인 유지(로그인 버튼). un-gestured consent 금지.
+        // 저장 토큰 없음/만료 → 조용히 미로그인 유지(로그인 버튼). 콜드스타트 팝업 금지.
       }
     },
   }
