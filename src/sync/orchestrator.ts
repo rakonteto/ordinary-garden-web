@@ -1,5 +1,7 @@
 import { mergeRecords } from './merge'
 import { exportSnapshot, importMergedMeta, EMPTY_SNAPSHOT, type GardenSnapshot } from './snapshot'
+import { syncPhotos } from './photos-sync'
+import { downscaleImage } from './image'
 import type { DriveClient } from './drive'
 
 export const GARDEN_FILE = 'garden.json'
@@ -7,6 +9,7 @@ export const GARDEN_FILE = 'garden.json'
 export interface SyncDeps {
   drive: DriveClient
   onChanged: () => void | Promise<void>
+  downscale?: (b: Blob) => Promise<Blob>
 }
 
 export interface SyncEngine {
@@ -36,7 +39,8 @@ export function createSyncEngine(deps: SyncDeps): SyncEngine {
     // 4) 로컬 반영(updatedAt 보존)
     await importMergedMeta(merged)
 
-    // 5) 사진 동기화 자리(Task 8에서 syncPhotos(deps.drive, remote.photos) 삽입)
+    // 5) 사진 동기화
+    await syncPhotos(deps.drive, remote.photos ?? [], deps.downscale ?? downscaleImage)
 
     // 6) 머지 후 최신 스냅샷 재업로드
     const next = await exportSnapshot()
