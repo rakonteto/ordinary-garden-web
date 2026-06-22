@@ -40,8 +40,12 @@ describe('SyncStore', () => {
     expect(sync).toHaveBeenCalled()
   })
 
-  it('configured=false면 signedIn 무관하게 동기화 비활성', () => {
-    const store = createSyncStore({ engine: engine(), tokens: tokens(), configured: false })
+  it('configured=false면 signedIn 무관하게 동기화 비활성', async () => {
+    const sync = vi.fn(async () => {})
+    const store = createSyncStore({ engine: engine(sync), tokens: tokens(), configured: false })
+    await store.syncNow()
     expect(store.getSnapshot().configured).toBe(false)
+    expect(sync).not.toHaveBeenCalled()
+    expect(store.getSnapshot().status).toBe('idle')
   })
 })

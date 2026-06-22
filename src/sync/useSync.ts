@@ -1,4 +1,4 @@
-import { useEffect, useSyncExternalStore } from 'react'
+import { useSyncExternalStore } from 'react'
 import { createSyncStore, type SyncState } from './store'
 import { createGisTokenProvider } from './auth'
 import { createDriveClient } from './drive'
@@ -25,6 +25,5 @@ export function useSync(): SyncState & {
   syncNow: () => Promise<void>; signIn: () => Promise<void>; signOut: () => void
 } {
   const state = useSyncExternalStore(syncStore.subscribe, syncStore.getSnapshot)
-  useEffect(() => {}, [])
   return { ...state, syncNow: syncStore.syncNow, signIn: syncStore.signIn, signOut: syncStore.signOut }
 }
