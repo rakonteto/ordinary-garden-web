@@ -56,4 +56,48 @@ describe('DriveClient', () => {
     await drive.findFileId('x')
     expect(fetchFn).toHaveBeenCalledTimes(2)
   })
+
+  it('downloadJson은 GET /files/{id}?alt=media를 호출하고 파싱된 JSON을 반환', async () => {
+    const payload = { plant: 'tomato', count: 3 }
+    const fetchFn = vi.fn(async () => ok(payload))
+    const drive = createDriveClient(tokens, fetchFn as unknown as typeof fetch)
+    const result = await drive.downloadJson<typeof payload>('F1')
+    expect(result).toEqual(payload)
+    const [url, init] = fetchFn.mock.calls[0] as unknown as [string, RequestInit]
+    expect(url).toContain('/files/F1')
+    expect(url).toContain('alt=media')
+    expect((init.headers as Record<string, string>).Authorization).toBe('Bearer TKN')
+  })
+
+  it('downloadBlob은 GET /files/{id}?alt=media를 호출하고 Blob을 반환', async () => {
+    const fetchFn = vi.fn(async () => ({ ok: true, status: 200, json: async () => ({}), blob: async () => new Blob(['img-data'], { type: 'image/jpeg' }) }) as unknown as Response)
+    const drive = createDriveClient(tokens, fetchFn as unknown as typeof fetch)
+    const result = await drive.downloadBlob('F1')
+    expect(result).toBeInstanceOf(Blob)
+    const [url] = fetchFn.mock.calls[0] as unknown as [string, RequestInit]
+    expect(url).toContain('/files/F1')
+    expect(url).toContain('alt=media')
+  })
+
+  it('uploadBlob(신규)은 multipart POST, Blob body, Authorization 헤더 포함', async () => {
+    const fetchFn = vi.fn(async () => ok({ id: 'IMG1' }))
+    const drive = createDriveClient(tokens, fetchFn as unknown as typeof fetch)
+    const blob = new Blob(['img'], { type: 'image/jpeg' })
+    const id = await drive.uploadBlob('photo.jpg', blob)
+    expect(id).toBe('IMG1')
+    const [url, init] = fetchFn.mock.calls[0] as unknown as [string, RequestInit]
+    expect(url).toContain('uploadType=multipart')
+    expect(init.method).toBe('POST')
+    expect(init.body).toBeInstanceOf(Blob)
+    expect((init.headers as Record<string, string>).Authorization).toBe('Bearer TKN')
+  })
+
+  it('deleteFile은 DELETE /files/{id}를 호출', async () => {
+    const fetchFn = vi.fn(async () => ({ ok: true, status: 204, json: async () => ({}), blob: async () => new Blob() }) as unknown as Response)
+    const drive = createDriveClient(tokens, fetchFn as unknown as typeof fetch)
+    await drive.deleteFile('RD1')
+    const [url, init] = fetchFn.mock.calls[0] as unknown as [string, RequestInit]
+    expect(url).toContain('/files/RD1')
+    expect(init.method).toBe('DELETE')
+  })
 })
