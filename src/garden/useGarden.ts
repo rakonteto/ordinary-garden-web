@@ -1,7 +1,7 @@
 import { useEffect, useSyncExternalStore } from 'react'
 import { createGardenStore, type GardenState, type AddPlantInput, type EditPlantInput } from './store'
 import { listAreas, createArea } from '../data/areas'
-import { listPlants, createPlant, updatePlant, archivePlant, softDeletePlantDeep } from '../data/plants'
+import { listPlants, createPlant, updatePlant, archivePlant, unarchivePlant, listArchivedPlants, softDeletePlantDeep } from '../data/plants'
 import { putPhoto } from '../data/photos'
 import type { Area, Plant } from '../data/types'
 
@@ -14,6 +14,8 @@ export const gardenStore = createGardenStore({
   updatePlant,
   putPhoto,
   archivePlant,
+  unarchivePlant,
+  listArchivedPlants,
   softDeletePlant: softDeletePlantDeep,
 })
 
@@ -29,6 +31,7 @@ export function useGarden(): GardenState & {
   addPlant: (input: AddPlantInput) => Promise<Plant>
   editPlant: (id: string, input: EditPlantInput) => Promise<void>
   archivePlant: (id: string) => Promise<void>
+  unarchivePlant: (id: string) => Promise<void>
   deletePlant: (id: string) => Promise<void>
 } {
   const state = useSyncExternalStore(gardenStore.subscribe, gardenStore.getSnapshot)
@@ -41,6 +44,7 @@ export function useGarden(): GardenState & {
     addPlant: gardenStore.addPlant,
     editPlant: gardenStore.editPlant,
     archivePlant: gardenStore.archivePlant,
+    unarchivePlant: gardenStore.unarchivePlant,
     deletePlant: gardenStore.deletePlant,
   }
 }

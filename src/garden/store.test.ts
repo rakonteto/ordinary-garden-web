@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import { db } from '../data/db'
 import { listAreas, createArea } from '../data/areas'
-import { listPlants, createPlant, updatePlant, archivePlant, softDeletePlant } from '../data/plants'
+import { listPlants, createPlant, updatePlant, archivePlant, listArchivedPlants, unarchivePlant, softDeletePlant } from '../data/plants'
 import { putPhoto, getPhoto } from '../data/photos'
 import { createGardenStore } from './store'
 import type { GardenRepo } from './store'
@@ -15,6 +15,8 @@ function makeStore() {
     updatePlant,
     putPhoto,
     archivePlant,
+    listArchivedPlants,
+    unarchivePlant,
     softDeletePlant,
   })
 }
@@ -77,6 +79,12 @@ function makeFakeRepo(): GardenRepo {
       const p = plants.find((x) => x.id === id)
       if (p) p.isArchived = true
     },
+    unarchivePlant: async (id) => {
+      const p = plants.find((x) => x.id === id)
+      if (p) p.isArchived = false
+    },
+    listArchivedPlants: async () =>
+      plants.filter((p) => !p._softDeleted && p.isArchived) as import('../data/types').Plant[],
     softDeletePlant: async (id) => {
       const p = plants.find((x) => x.id === id)
       if (p) p._softDeleted = true
@@ -93,7 +101,7 @@ beforeEach(async () => {
 describe('gardenStore', () => {
   it('load 전 스냅샷은 loaded=false, 빈 배열', () => {
     const store = makeStore()
-    expect(store.getSnapshot()).toEqual({ areas: [], plants: [], loaded: false })
+    expect(store.getSnapshot()).toEqual({ areas: [], plants: [], archivedPlants: [], loaded: false })
   })
 
   it('getSnapshot은 변화 없으면 동일 참조, 변경 시 새 참조를 준다', async () => {
@@ -164,5 +172,26 @@ describe('gardenStore', () => {
     const p = await store.addPlant({ areaId: 'a1', name: '바질' })
     await store.deletePlant(p.id)
     expect(store.getSnapshot().plants.find((x) => x.id === p.id)).toBeUndefined()
+  })
+
+  it('load하면 보관 식물을 archivedPlants로 채운다', async () => {
+    const repo = makeFakeRepo()
+    const store = createGardenStore(repo)
+    await store.load()
+    const p = await store.addPlant({ areaId: 'a1', name: '바질' })
+    await store.archivePlant(p.id)
+    expect(store.getSnapshot().plants.find((x) => x.id === p.id)).toBeUndefined()
+    expect(store.getSnapshot().archivedPlants.map((x) => x.id)).toContain(p.id)
+  })
+
+  it('unarchivePlant: 보관 해제 후 내 정원 복귀·보관함서 제거', async () => {
+    const repo = makeFakeRepo()
+    const store = createGardenStore(repo)
+    await store.load()
+    const p = await store.addPlant({ areaId: 'a1', name: '바질' })
+    await store.archivePlant(p.id)
+    await store.unarchivePlant(p.id)
+    expect(store.getSnapshot().plants.find((x) => x.id === p.id)?.id).toBe(p.id)
+    expect(store.getSnapshot().archivedPlants.find((x) => x.id === p.id)).toBeUndefined()
   })
 })

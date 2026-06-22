@@ -7,6 +7,8 @@ import {
   updatePlant,
   softDeletePlant,
   archivePlant,
+  listArchivedPlants,
+  unarchivePlant,
   softDeletePlantDeep,
 } from './plants'
 import { createEntry, listEntriesByPlant } from './journal'
@@ -66,6 +68,44 @@ describe('plants 리포지토리', () => {
     const raw = await db.plants.get(p.id)
     expect(raw?.isArchived).toBe(true)
     expect(raw?.deleted).toBe(false)
+  })
+
+  it('listArchivedPlants는 보관된 식물만 sortOrder 순으로 반환한다', async () => {
+    const a = await createPlant({ areaId: 'a1', name: '바질' }) // sortOrder 0
+    const b = await createPlant({ areaId: 'a1', name: '민트' }) // sortOrder 1
+    const c = await createPlant({ areaId: 'a1', name: '토마토' }) // 미보관
+    await archivePlant(b.id)
+    await archivePlant(a.id)
+    const archived = await listArchivedPlants()
+    expect(archived.map((x) => x.name)).toEqual(['바질', '민트']) // sortOrder 순
+    expect(archived.map((x) => x.id)).not.toContain(c.id) // 미보관 제외
+  })
+
+  it('listArchivedPlants는 삭제된 식물은 제외한다', async () => {
+    const a = await createPlant({ areaId: 'a1', name: '바질' })
+    await archivePlant(a.id)
+    await softDeletePlant(a.id) // 보관 후 tombstone
+    expect(await listArchivedPlants()).toEqual([])
+  })
+
+  it('unarchivePlant는 보관을 해제하고 목록에 복귀시킨다', async () => {
+    const p = await createPlant({ areaId: 'a1', name: '바질' })
+    await archivePlant(p.id)
+    await unarchivePlant(p.id)
+    expect((await db.plants.get(p.id))?.isArchived).toBe(false)
+    expect((await listPlants()).find((x) => x.id === p.id)?.id).toBe(p.id)
+    expect(await listArchivedPlants()).toEqual([])
+  })
+
+  it('unarchivePlant는 updatedAt을 갱신한다(동기화 전파)', async () => {
+    const p = await createPlant({ areaId: 'a1', name: '바질' }, 1000)
+    await archivePlant(p.id, 2000)
+    await unarchivePlant(p.id, 3000)
+    expect((await db.plants.get(p.id))?.updatedAt).toBe(3000)
+  })
+
+  it('unarchivePlant 멱등: 없는 식물이면 no-op', async () => {
+    await expect(unarchivePlant('nonexistent')).resolves.not.toThrow()
   })
 })
 

@@ -71,6 +71,19 @@ export async function archivePlant(id: string, now = Date.now()): Promise<void> 
   await db.plants.put({ ...existing, isArchived: true, updatedAt: now })
 }
 
+/** 보관 해제: 다시 "내 정원" 목록으로 복귀. updatedAt 갱신으로 동기화에 전파. 멱등(없으면 no-op). */
+export async function unarchivePlant(id: string, now = Date.now()): Promise<void> {
+  const existing = await db.plants.get(id)
+  if (!existing) return
+  await db.plants.put({ ...existing, isArchived: false, updatedAt: now })
+}
+
+/** 보관(archive)되고 삭제되지 않은 식물을 sortOrder 순으로. listPlants 미러(메모리 필터). */
+export async function listArchivedPlants(): Promise<Plant[]> {
+  const all = await db.plants.orderBy('sortOrder').toArray()
+  return all.filter((p) => !p.deleted && p.isArchived)
+}
+
 /**
  * 식물과 그 식물에 속한 모든 일지·사진을 cascade soft-delete한다.
  * - 일지 각각의 사진(listPhotosByOwner(entry.id)) → softDeletePhoto

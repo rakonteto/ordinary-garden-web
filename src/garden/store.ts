@@ -5,6 +5,7 @@ import type { NewPhoto } from '../data/photos'
 export interface GardenState {
   areas: Area[]
   plants: Plant[]
+  archivedPlants: Plant[]
   loaded: boolean
 }
 
@@ -34,6 +35,8 @@ export interface GardenRepo {
   updatePlant(id: string, patch: PlantPatch): Promise<Plant>
   putPhoto(input: NewPhoto): Promise<{ id: string }>
   archivePlant(id: string): Promise<void>
+  unarchivePlant(id: string): Promise<void>
+  listArchivedPlants(): Promise<Plant[]>
   softDeletePlant(id: string): Promise<void>
 }
 
@@ -45,10 +48,11 @@ export interface GardenStore {
   addPlant(input: AddPlantInput): Promise<Plant>
   editPlant(id: string, input: EditPlantInput): Promise<void>
   archivePlant(id: string): Promise<void>
+  unarchivePlant(id: string): Promise<void>
   deletePlant(id: string): Promise<void>
 }
 
-const EMPTY: GardenState = { areas: [], plants: [], loaded: false }
+const EMPTY: GardenState = { areas: [], plants: [], archivedPlants: [], loaded: false }
 
 export function createGardenStore(repo: GardenRepo): GardenStore {
   let state: GardenState = EMPTY
@@ -60,8 +64,12 @@ export function createGardenStore(repo: GardenRepo): GardenStore {
   }
 
   async function reload() {
-    const [areas, plants] = await Promise.all([repo.listAreas(), repo.listPlants()])
-    set({ areas, plants, loaded: true })
+    const [areas, plants, archivedPlants] = await Promise.all([
+      repo.listAreas(),
+      repo.listPlants(),
+      repo.listArchivedPlants(),
+    ])
+    set({ areas, plants, archivedPlants, loaded: true })
   }
 
   return {
@@ -111,6 +119,10 @@ export function createGardenStore(repo: GardenRepo): GardenStore {
     },
     async archivePlant(id) {
       await repo.archivePlant(id)
+      await reload()
+    },
+    async unarchivePlant(id) {
+      await repo.unarchivePlant(id)
       await reload()
     },
     async deletePlant(id) {

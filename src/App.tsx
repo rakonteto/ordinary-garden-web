@@ -6,6 +6,7 @@ import PlantDetailRoute from './routes/PlantDetailRoute'
 import SettingsRoute from './routes/SettingsRoute'
 import CodexRoute from './routes/CodexRoute'
 import CodexDetailRoute from './routes/CodexDetailRoute'
+import ArchiveRoute from './routes/ArchiveRoute'
 import WeatherDetail from './weather/WeatherDetail'
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
           <Route path="/today" element={<TodayRoute />} />
           <Route path="/weather" element={<WeatherDetail />} />
           <Route path="/garden" element={<GardenRoute />} />
+          <Route path="/archive" element={<ArchiveRoute />} />
           <Route path="/plant/:id" element={<PlantDetailRoute />} />
           <Route path="/codex" element={<CodexRoute />} />
           <Route path="/codex/:speciesId" element={<CodexDetailRoute />} />

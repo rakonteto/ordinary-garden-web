@@ -57,6 +57,17 @@
   cursor: pointer;
   z-index: 40;
 }
+.garden__archive-link {
+  display: inline-block;
+  align-self: flex-start;
+  color: var(--color-text-weak);
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: var(--space-2) 0;
+}
+.garden__archive-link:active {
+  color: var(--color-primary);
+}
 
 /* 시트 공통 입력 필드 */
 .field {

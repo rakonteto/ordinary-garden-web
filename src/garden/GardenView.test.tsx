@@ -4,6 +4,7 @@ import { MemoryRouter } from 'react-router-dom'
 import userEvent from '@testing-library/user-event'
 import { db } from '../data/db'
 import { gardenStore } from './useGarden'
+import { createPlant, archivePlant } from '../data/plants'
 import GardenView from './GardenView'
 
 beforeEach(async () => {
@@ -34,5 +35,22 @@ describe('GardenView', () => {
     await userEvent.type(screen.getByLabelText('이름'), '바질')
     await userEvent.click(screen.getByRole('button', { name: '저장' }))
     expect(await screen.findByText('바질')).toBeInTheDocument()
+  })
+
+  it('보관 식물이 있으면 보관함 진입점을 보여준다', async () => {
+    await gardenStore.addArea('베란다')
+    const area = gardenStore.getSnapshot().areas[0]
+    const p = await createPlant({ areaId: area.id, name: '바질' })
+    await archivePlant(p.id)
+    await gardenStore.load()
+    render(<MemoryRouter><GardenView /></MemoryRouter>)
+    expect(await screen.findByRole('link', { name: /보관함 1개/ })).toBeInTheDocument()
+  })
+
+  it('보관 식물이 없으면 보관함 진입점을 숨긴다', async () => {
+    await gardenStore.addArea('베란다')
+    render(<MemoryRouter><GardenView /></MemoryRouter>)
+    await screen.findByRole('button', { name: '식물 추가' }) // 로드 완료 대기
+    expect(screen.queryByText(/보관함/)).not.toBeInTheDocument()
   })
 })

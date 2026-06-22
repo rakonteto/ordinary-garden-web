@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useGarden } from './useGarden'
 import FilterChips from './FilterChips'
 import AreaSection from './AreaSection'
@@ -9,7 +10,7 @@ import './GardenView.css'
 type SheetKind = 'area' | 'plant' | null
 
 export default function GardenView() {
-  const { areas, plants, loaded, addArea, addPlant } = useGarden()
+  const { areas, plants, archivedPlants, loaded, addArea, addPlant } = useGarden()
   const [selectedAreaId, setSelectedAreaId] = useState<string | null>(null)
   const [sheet, setSheet] = useState<SheetKind>(null)
 
@@ -41,6 +42,11 @@ export default function GardenView() {
           {visibleAreas.map((area) => (
             <AreaSection key={area.id} title={area.name} plants={plants.filter((p) => p.areaId === area.id)} />
           ))}
+          {archivedPlants.length > 0 && (
+            <Link to="/archive" className="garden__archive-link">
+              보관함 {archivedPlants.length}개 보기
+            </Link>
+          )}
           <button
             type="button"
             className="garden__fab"
