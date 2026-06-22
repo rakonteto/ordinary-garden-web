@@ -12,9 +12,9 @@ export interface NewEntryFields {
 
 export type EntryPatch = Partial<Pick<JournalEntry, 'date' | 'note' | 'tags' | 'weatherSnapshot'>>
 
-export async function createEntry(fields: NewEntryFields): Promise<JournalEntry> {
+export async function createEntry(fields: NewEntryFields, now = Date.now()): Promise<JournalEntry> {
   const entry: JournalEntry = {
-    ...baseFields(Date.now()),
+    ...baseFields(now),
     plantId: fields.plantId,
     date: fields.date,
     note: fields.note,
@@ -32,16 +32,16 @@ export async function listEntriesByPlant(plantId: string): Promise<JournalEntry[
     .sort((a, b) => b.date - a.date || b.updatedAt - a.updatedAt) // 최신이 위
 }
 
-export async function updateEntry(id: string, patch: EntryPatch): Promise<JournalEntry> {
+export async function updateEntry(id: string, patch: EntryPatch, now = Date.now()): Promise<JournalEntry> {
   const existing = await db.journalEntries.get(id)
   if (!existing) throw new Error(`journal entry not found: ${id}`)
-  const updated: JournalEntry = { ...existing, ...patch, updatedAt: Date.now() }
+  const updated: JournalEntry = { ...existing, ...patch, updatedAt: now }
   await db.journalEntries.put(updated)
   return updated
 }
 
-export async function softDeleteEntry(id: string): Promise<void> {
+export async function softDeleteEntry(id: string, now = Date.now()): Promise<void> {
   const existing = await db.journalEntries.get(id)
   if (!existing) return
-  await db.journalEntries.put({ ...existing, deleted: true, updatedAt: Date.now() })
+  await db.journalEntries.put({ ...existing, deleted: true, updatedAt: now })
 }

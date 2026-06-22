@@ -19,12 +19,12 @@ export type PlantPatch = Partial<
   Pick<Plant, 'areaId' | 'name' | 'lightRequirement' | 'photoId' | 'datePlanted' | 'note'>
 >
 
-export async function createPlant(fields: NewPlantFields): Promise<Plant> {
+export async function createPlant(fields: NewPlantFields, now = Date.now()): Promise<Plant> {
   // sortOrder = 현재 행 수(tombstone 포함)로 단조 증가. 단일 사용자 순차 조작이라
   // 동시 생성으로 인한 중복 순서는 사실상 없다(명시적 reorder는 ④⑥에서 도입).
   const sortOrder = await db.plants.count()
   const plant: Plant = {
-    ...baseFields(Date.now()),
+    ...baseFields(now),
     areaId: fields.areaId,
     name: fields.name,
     lightRequirement: fields.lightRequirement,
@@ -50,25 +50,25 @@ export async function listPlantsByArea(areaId: string): Promise<Plant[]> {
   return all.filter((p) => !p.deleted && !p.isArchived)
 }
 
-export async function updatePlant(id: string, patch: PlantPatch): Promise<Plant> {
+export async function updatePlant(id: string, patch: PlantPatch, now = Date.now()): Promise<Plant> {
   const existing = await db.plants.get(id)
   if (!existing) throw new Error(`plant not found: ${id}`)
-  const updated: Plant = { ...existing, ...patch, updatedAt: Date.now() }
+  const updated: Plant = { ...existing, ...patch, updatedAt: now }
   await db.plants.put(updated)
   return updated
 }
 
-export async function softDeletePlant(id: string): Promise<void> {
+export async function softDeletePlant(id: string, now = Date.now()): Promise<void> {
   // 멱등: 없으면 no-op(동기화의 중복 삭제 전파 흡수).
   const existing = await db.plants.get(id)
   if (!existing) return
-  await db.plants.put({ ...existing, deleted: true, updatedAt: Date.now() })
+  await db.plants.put({ ...existing, deleted: true, updatedAt: now })
 }
 
-export async function archivePlant(id: string): Promise<void> {
+export async function archivePlant(id: string, now = Date.now()): Promise<void> {
   const existing = await db.plants.get(id)
   if (!existing) return
-  await db.plants.put({ ...existing, isArchived: true, updatedAt: Date.now() })
+  await db.plants.put({ ...existing, isArchived: true, updatedAt: now })
 }
 
 /**
@@ -79,26 +79,26 @@ export async function archivePlant(id: string): Promise<void> {
  * - 식물 → softDeletePlant
  * 멱등: 이미 삭제된 식물이라도 오류 없이 동작한다.
  */
-export async function softDeletePlantDeep(id: string): Promise<void> {
+export async function softDeletePlantDeep(id: string, now = Date.now()): Promise<void> {
   // 일지 전체 조회 후 각 일지의 사진 → 일지 순으로 cascade
   const entries = await listEntriesByPlant(id)
   for (const entry of entries) {
     const photos = await listPhotosByOwner(entry.id)
     for (const photo of photos) {
-      await softDeletePhoto(photo.id)
+      await softDeletePhoto(photo.id, now)
     }
-    await softDeleteEntry(entry.id)
+    await softDeleteEntry(entry.id, now)
   }
 
   // 케어 규칙 cascade
-  await softDeleteRulesByPlant(id)
+  await softDeleteRulesByPlant(id, now)
 
   // 식물 대표사진
   const plant = await db.plants.get(id)
   if (plant?.photoId) {
-    await softDeletePhoto(plant.photoId)
+    await softDeletePhoto(plant.photoId, now)
   }
 
   // 마지막으로 식물 자체 tombstone
-  await softDeletePlant(id)
+  await softDeletePlant(id, now)
 }
