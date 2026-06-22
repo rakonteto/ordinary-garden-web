@@ -47,7 +47,9 @@ describe('syncPhotos', () => {
     const deleteFile = vi.fn(async () => {})
     await syncPhotos(drive({ deleteFile }), [{ id: 'p3', updatedAt: 9, deleted: true, ownerId: 'o1', driveFileId: 'RD3' }], noScale)
     expect(deleteFile).toHaveBeenCalledWith('RD3')
-    expect((await db.journalPhotos.get('p3'))!.driveFileId).toBeUndefined()
+    const got = await db.journalPhotos.get('p3')
+    expect(got!.driveFileId).toBeUndefined()
+    expect(got!.blob).toBeUndefined() // tombstone은 blob도 비운다(spec)
   })
 
   it('메타 머지: 로컬 blob을 보존하면서 원격 메타를 반영', async () => {
