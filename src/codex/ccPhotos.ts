@@ -364,6 +364,98 @@ export const ccPhotos: Record<string, CcPhoto> = {
       'https://commons.wikimedia.org/wiki/File:Platycodon_grandiflorus_in_Jardin_botanique_de_la_Charme.jpg',
     title: 'Platycodon grandiflorus (도라지)',
   },
+  // ── 덩굴·화목 11종 (② 여섯째 배치) ─────────────────────────────
+  'clematis-main': {
+    file: 'clematis-main.jpg',
+    author: 'Bengt Nyman from Vaxholm, Sweden',
+    license: 'CC BY-SA 2.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/2.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:A7R09085_(52138013652).jpg',
+    title: 'Clematis (클레마티스)',
+  },
+  'trumpet-vine-main': {
+    file: 'trumpet-vine-main.jpg',
+    author: 'Zythème',
+    license: 'CC0',
+    licenseUrl: 'https://creativecommons.org/publicdomain/zero/1.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Campsis_grandiflora,_2.jpg',
+    title: 'Campsis grandiflora (능소화)',
+  },
+  'wisteria-main': {
+    file: 'wisteria-main.jpg',
+    author: 'Tangopaso',
+    license: 'Public Domain',
+    licenseUrl: 'https://creativecommons.org/publicdomain/mark/1.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Abbaye_de_L%C3%A9rins,_wisteria_in_the_yard_of_the_church.jpg',
+    title: 'Wisteria floribunda (등나무)',
+  },
+  'morning-glory-main': {
+    file: 'morning-glory-main.jpg',
+    author: 'Melgisan',
+    license: 'CC0',
+    licenseUrl: 'https://creativecommons.org/publicdomain/zero/1.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Ipomoea_Nil_Flower.jpg',
+    title: 'Ipomoea nil (나팔꽃)',
+  },
+  'azalea-jindalrae-main': {
+    file: 'azalea-jindalrae-main.jpg',
+    author: '최광모',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:20150331%EC%B5%9C%EA%B4%91%EB%AA%A8123.jpg',
+    title: 'Rhododendron mucronulatum (진달래)',
+  },
+  'azalea-cheoljjuk-main': {
+    file: 'azalea-cheoljjuk-main.jpg',
+    author: 'Cephas',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Rhododendron_schlippenbachii_JRVdH_07.jpg',
+    title: 'Rhododendron schlippenbachii (철쭉)',
+  },
+  'camellia-main': {
+    file: 'camellia-main.jpg',
+    author: 'Motohiro Sunouchi',
+    license: 'CC BY 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by/4.0/',
+    sourceUrl:
+      "https://commons.wikimedia.org/wiki/File:Camellia_japonica_%27Izumo-no-okuni_%E5%87%BA%E9%9B%B2%E9%98%BF%E5%9B%BD%27_L.-_Sp._Pl._2-_698_(1753)_20240216_174759.jpg",
+    title: 'Camellia japonica (동백)',
+  },
+  'rose-of-sharon-main': {
+    file: 'rose-of-sharon-main.jpg',
+    author: 'Sevayuu',
+    license: 'CC BY 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by/4.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Hibiscus_syriacus_purple_flower_in_Tashkent_Region.jpg',
+    title: 'Hibiscus syriacus (무궁화)',
+  },
+  'lilac-main': {
+    file: 'lilac-main.jpg',
+    author: 'Joselodos',
+    license: 'CC0',
+    licenseUrl: 'https://creativecommons.org/publicdomain/zero/1.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Syringa_vulgaris_in_bloom.jpg',
+    title: 'Syringa (라일락·수수꽃다리)',
+  },
+  'magnolia-main': {
+    file: 'magnolia-main.jpg',
+    author: 'Susanne Nilsson',
+    license: 'CC BY-SA 2.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/2.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Magnolia_(34982957795).jpg',
+    title: 'Magnolia (목련)',
+  },
+  'forsythia-main': {
+    file: 'forsythia-main.jpg',
+    author: 'Palberts9956',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Yellow_Flowers_2020.jpg',
+    title: 'Forsythia koreana (개나리)',
+  },
 }
 
 export function getCcPhoto(speciesId: string): CcPhoto | undefined {

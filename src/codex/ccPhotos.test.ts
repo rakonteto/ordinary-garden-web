@@ -63,6 +63,21 @@ const PERENNIAL_SPECIES = [
   'balloon-flower-main',
 ]
 
+// ② 여섯째 배치 = 덩굴·화목 11종.
+const WOODY_SPECIES = [
+  'clematis-main',
+  'trumpet-vine-main',
+  'wisteria-main',
+  'morning-glory-main',
+  'azalea-jindalrae-main',
+  'azalea-cheoljjuk-main',
+  'camellia-main',
+  'rose-of-sharon-main',
+  'lilac-main',
+  'magnolia-main',
+  'forsythia-main',
+]
+
 // 공개·무료 배포에 안전한 자유 라이선스만 허용한다(NC/ND 불가).
 const ALLOWED_LICENSE = /^(CC0|Public Domain|CC BY \d\.\d|CC BY-SA \d\.\d)$/
 
@@ -97,6 +112,13 @@ describe('ccPhotos — CC 사진 매핑', () => {
 
   it('숙근 11종이 모두 매핑돼 있다(② 다섯째 배치)', () => {
     for (const id of PERENNIAL_SPECIES) {
+      expect(ccPhotos[id], `${id} 누락`).toBeDefined()
+      expect(getCcPhoto(id)).toBe(ccPhotos[id])
+    }
+  })
+
+  it('덩굴·화목 11종이 모두 매핑돼 있다(② 여섯째 배치)', () => {
+    for (const id of WOODY_SPECIES) {
       expect(ccPhotos[id], `${id} 누락`).toBeDefined()
       expect(getCcPhoto(id)).toBe(ccPhotos[id])
     }
