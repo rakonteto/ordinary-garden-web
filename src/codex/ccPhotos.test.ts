@@ -20,6 +20,20 @@ const PEONY_SPECIES = [
   'paeonia-obovata',
 ]
 
+// ② 셋째 배치 = 구근 10종.
+const BULB_SPECIES = [
+  'tulip-main',
+  'daffodil-main',
+  'hyacinth-main',
+  'crocus-main',
+  'muscari-main',
+  'lily-main',
+  'red-spider-lily-main',
+  'gladiolus-main',
+  'dahlia-main',
+  'canna-main',
+]
+
 // 공개·무료 배포에 안전한 자유 라이선스만 허용한다(NC/ND 불가).
 const ALLOWED_LICENSE = /^(CC0|Public Domain|CC BY \d\.\d|CC BY-SA \d\.\d)$/
 
@@ -33,6 +47,13 @@ describe('ccPhotos — CC 사진 매핑', () => {
 
   it('작약·모란 5종이 모두 매핑돼 있다(② 둘째 배치)', () => {
     for (const id of PEONY_SPECIES) {
+      expect(ccPhotos[id], `${id} 누락`).toBeDefined()
+      expect(getCcPhoto(id)).toBe(ccPhotos[id])
+    }
+  })
+
+  it('구근 10종이 모두 매핑돼 있다(② 셋째 배치)', () => {
+    for (const id of BULB_SPECIES) {
       expect(ccPhotos[id], `${id} 누락`).toBeDefined()
       expect(getCcPhoto(id)).toBe(ccPhotos[id])
     }
