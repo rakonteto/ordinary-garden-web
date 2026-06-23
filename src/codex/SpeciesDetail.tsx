@@ -1,6 +1,8 @@
 import { useParams, Link } from 'react-router-dom'
 import { findSpecies } from './search'
 import { CATEGORY_EMOJI } from './categories'
+import SpeciesPhoto from './SpeciesPhoto'
+import { useCodexPhotos } from './photoStore'
 import './SpeciesDetail.css'
 
 // 표시할 재배 정보 필드(순서대로). bloomType은 화훼 등에만 있어 값이 있을 때만 나온다.
@@ -19,6 +21,7 @@ const FIELDS = [
 export default function SpeciesDetail() {
   const { speciesId } = useParams()
   const ref = speciesId ? findSpecies(speciesId) : null
+  const { byId, setSpeciesPhoto, removeSpeciesPhoto } = useCodexPhotos()
 
   if (!ref) {
     return (
@@ -32,11 +35,38 @@ export default function SpeciesDetail() {
   }
 
   const { species } = ref
+
+  const minePhotoId = byId.get(species.id)?.id
+
+  async function onPick(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0]
+    if (file) await setSpeciesPhoto(species.id, file)
+    e.target.value = '' // 같은 파일 재선택 허용
+  }
+
   return (
     <section className="sdetail">
       <Link to="/codex" className="sdetail__back">
         ← 도감
       </Link>
+
+      <SpeciesPhoto speciesId={species.id} category={species.category} variant="detail" alt={species.name} />
+
+      <div className="sdetail__photo-edit">
+        <label className="sdetail__photo-btn">
+          {minePhotoId ? '내 사진 교체' : '내 사진 추가'}
+          <input type="file" accept="image/*" onChange={onPick} hidden />
+        </label>
+        {minePhotoId && (
+          <button
+            type="button"
+            className="sdetail__photo-remove"
+            onClick={() => removeSpeciesPhoto(species.id)}
+          >
+            삭제
+          </button>
+        )}
+      </div>
 
       <header className="sdetail__head glass">
         <span className="sdetail__badge">
