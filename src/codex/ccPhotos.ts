@@ -184,6 +184,91 @@ export const ccPhotos: Record<string, CcPhoto> = {
     sourceUrl: 'https://commons.wikimedia.org/wiki/File:Canna_Indica_Flower.jpg',
     title: 'Canna (칸나)',
   },
+  // ── 한해살이 10종 (② 넷째 배치) ─────────────────────────────
+  'petunia-main': {
+    file: 'petunia-main.jpg',
+    author: 'Anik Sarker',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Surfinia_Purple_Flower.jpg',
+    title: 'Petunia (페튜니아)',
+  },
+  'marigold-main': {
+    file: 'marigold-main.jpg',
+    author: 'Sixflashphoto',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Inniswood_-_Tagetes_erecta_1.jpg',
+    title: 'Tagetes (메리골드)',
+  },
+  'pansy-main': {
+    file: 'pansy-main.jpg',
+    author: 'Agnieszka Kwiecień, Nova',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl:
+      "https://commons.wikimedia.org/wiki/File:Viola_x_wittrockiana_%27Carneval_Cherry%27_Bratek_ogrodowy_2018-04-15_01_(2).jpg",
+    title: 'Viola × wittrockiana (팬지·비올라)',
+  },
+  'balsam-main': {
+    file: 'balsam-main.jpg',
+    author: 'Astari28',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Bunga_Pacar_Air.png',
+    title: 'Impatiens balsamina (봉선화·봉숭아)',
+  },
+  'cosmos-main': {
+    file: 'cosmos-main.jpg',
+    author: 'Juan Carlos Fonseca Mata',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Mirasol_(Cosmos_bipinnatus).jpg',
+    title: 'Cosmos bipinnatus (코스모스)',
+  },
+  'portulaca-main': {
+    file: 'portulaca-main.jpg',
+    author: 'Darkpeanut',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Fleur_Portulaca_grandiflora.jpg',
+    title: 'Portulaca grandiflora (채송화)',
+  },
+  'zinnia-main': {
+    file: 'zinnia-main.jpg',
+    author: 'Ermell',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Zinnienbl%C3%BCte_Zinnia_elegans_stack15_20190722-RM-7222254.jpg',
+    title: 'Zinnia elegans (백일홍·백일초)',
+  },
+  'sunflower-main': {
+    file: 'sunflower-main.jpg',
+    author: 'Andreas Eichler',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:2017.07.18.-01-Ahrensdorf_Rietz-Neuendorf--Sonnenblumenfeld.jpg',
+    title: 'Helianthus annuus (해바라기)',
+  },
+  'celosia-main': {
+    file: 'celosia-main.jpg',
+    author: 'ProtoplasmaKid',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Celosia_cristata_(terciopelo)_-_flor_de_D%C3%ADa_de_Muertos_-_Closeup_-_2.jpg',
+    title: 'Celosia (맨드라미)',
+  },
+  'scarlet-sage-main': {
+    file: 'scarlet-sage-main.jpg',
+    author: 'Maurice07',
+    license: 'CC0',
+    licenseUrl: 'https://creativecommons.org/publicdomain/zero/1.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Flower_-_Istanbul.jpg',
+    title: 'Salvia splendens (샐비어·사루비아)',
+  },
 }
 
 export function getCcPhoto(speciesId: string): CcPhoto | undefined {
