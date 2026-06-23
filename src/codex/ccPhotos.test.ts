@@ -93,6 +93,24 @@ const ROSE_SPECIES = [
   'rosa-species',
 ]
 
+// ② 여덟째 배치 = 과수·교목 14종(비화훼 첫 그룹).
+const FRUIT_TREE_SPECIES = [
+  'apple-main',
+  'pear-main',
+  'persimmon-sweet',
+  'persimmon-astringent',
+  'jujube-main',
+  'fig-main',
+  'peach-main',
+  'plum-main',
+  'maesil-main',
+  'apricot-main',
+  'korean-cherry-main',
+  'cherry-main',
+  'quince-main',
+  'pomegranate-main',
+]
+
 // 공개·무료 배포에 안전한 자유 라이선스만 허용한다(NC/ND 불가).
 const ALLOWED_LICENSE = /^(CC0|Public Domain|CC BY \d\.\d|CC BY-SA \d\.\d)$/
 
@@ -141,6 +159,13 @@ describe('ccPhotos — CC 사진 매핑', () => {
 
   it('장미 11계통이 모두 매핑돼 있다(② 일곱째 배치)', () => {
     for (const id of ROSE_SPECIES) {
+      expect(ccPhotos[id], `${id} 누락`).toBeDefined()
+      expect(getCcPhoto(id)).toBe(ccPhotos[id])
+    }
+  })
+
+  it('과수·교목 14종이 모두 매핑돼 있다(② 여덟째 배치)', () => {
+    for (const id of FRUIT_TREE_SPECIES) {
       expect(ccPhotos[id], `${id} 누락`).toBeDefined()
       expect(getCcPhoto(id)).toBe(ccPhotos[id])
     }
