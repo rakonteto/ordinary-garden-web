@@ -44,6 +44,7 @@ export function createSyncStore(deps: SyncStoreDeps): SyncStore {
       await deps.engine.sync()
       set({ status: 'idle', lastSyncedAt: clock() })
     } catch (e) {
+      console.error('[sync] 동기화 실패:', e)
       set({ status: 'error', error: e instanceof Error ? e.message : String(e) })
     }
   }
