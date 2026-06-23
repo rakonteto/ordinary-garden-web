@@ -48,6 +48,21 @@ const ANNUAL_SPECIES = [
   'scarlet-sage-main',
 ]
 
+// ② 다섯째 배치 = 숙근 11종.
+const PERENNIAL_SPECIES = [
+  'chrysanthemum-main',
+  'hosta-main',
+  'iris-main',
+  'gujeolcho-main',
+  'korean-aster-main',
+  'coreopsis-main',
+  'rudbeckia-main',
+  'echinacea-main',
+  'shasta-daisy-main',
+  'hollyhock-main',
+  'balloon-flower-main',
+]
+
 // 공개·무료 배포에 안전한 자유 라이선스만 허용한다(NC/ND 불가).
 const ALLOWED_LICENSE = /^(CC0|Public Domain|CC BY \d\.\d|CC BY-SA \d\.\d)$/
 
@@ -75,6 +90,13 @@ describe('ccPhotos — CC 사진 매핑', () => {
 
   it('한해살이 10종이 모두 매핑돼 있다(② 넷째 배치)', () => {
     for (const id of ANNUAL_SPECIES) {
+      expect(ccPhotos[id], `${id} 누락`).toBeDefined()
+      expect(getCcPhoto(id)).toBe(ccPhotos[id])
+    }
+  })
+
+  it('숙근 11종이 모두 매핑돼 있다(② 다섯째 배치)', () => {
+    for (const id of PERENNIAL_SPECIES) {
       expect(ccPhotos[id], `${id} 누락`).toBeDefined()
       expect(getCcPhoto(id)).toBe(ccPhotos[id])
     }

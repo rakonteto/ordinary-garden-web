@@ -269,6 +269,101 @@ export const ccPhotos: Record<string, CcPhoto> = {
     sourceUrl: 'https://commons.wikimedia.org/wiki/File:Flower_-_Istanbul.jpg',
     title: 'Salvia splendens (샐비어·사루비아)',
   },
+  // ── 숙근 11종 (② 다섯째 배치) ─────────────────────────────
+  'chrysanthemum-main': {
+    file: 'chrysanthemum-main.jpg',
+    author: 'Ermell',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Chrysantheme_rot_tautropfen_-20191024-RM-102058.jpg',
+    title: 'Chrysanthemum × morifolium (국화)',
+  },
+  'hosta-main': {
+    file: 'hosta-main.jpg',
+    author: 'Mike Peel (www.mikepeel.net)',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:At_Berrington_Hall_2022_116.jpg',
+    title: 'Hosta (옥잠화·호스타)',
+  },
+  'iris-main': {
+    file: 'iris-main.jpg',
+    author: 'Ermell',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Iris_versicolor_-20200620-RM-100933.jpg',
+    title: 'Iris (붓꽃·아이리스)',
+  },
+  'gujeolcho-main': {
+    file: 'gujeolcho-main.jpg',
+    author: 'Averater',
+    license: 'CC BY 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by/4.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Chrysanthemum_zawadskii_ssp._acutilobum_var._alpinum_GotBot_2015_001.jpg',
+    title: 'Dendranthema zawadskii (구절초)',
+  },
+  'korean-aster-main': {
+    file: 'korean-aster-main.jpg',
+    author: 'Dalgial (파생: Sang Seo)',
+    license: 'CC BY-SA 3.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/3.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:%EB%B2%8C%EA%B0%9C%EB%AF%B8%EC%B7%A8_%EA%B0%80%EA%B9%8C%EC%9D%B4-2.JPG',
+    title: 'Aster koraiensis (벌개미취)',
+  },
+  'coreopsis-main': {
+    file: 'coreopsis-main.jpg',
+    author: 'houroumono',
+    license: 'CC BY 2.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Coreopsis_lanceolata_(14254188771).jpg',
+    title: 'Coreopsis (금계국·큰금계국)',
+  },
+  'rudbeckia-main': {
+    file: 'rudbeckia-main.jpg',
+    author: 'Sander van der Wel from Netherlands',
+    license: 'CC BY-SA 2.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/2.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Autumn_flowers_(10376232316).jpg',
+    title: 'Rudbeckia (루드베키아)',
+  },
+  'echinacea-main': {
+    file: 'echinacea-main.jpg',
+    author: 'Krzysztof Golik',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Echinacea_purpurea_in_Jardin_botanique_de_la_Charme_01.jpg',
+    title: 'Echinacea purpurea (에키네시아)',
+  },
+  'shasta-daisy-main': {
+    file: 'shasta-daisy-main.jpg',
+    author: 'Sankar 1995',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:White_Shasta_Daisies-_Shola_Gardens_-_Kotagiri.jpg',
+    title: 'Leucanthemum × superbum (샤스타데이지)',
+  },
+  'hollyhock-main': {
+    file: 'hollyhock-main.jpg',
+    author: 'S.G.S.',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Alcea_ficifolia_IMG_1983.jpg',
+    title: 'Alcea (접시꽃)',
+  },
+  'balloon-flower-main': {
+    file: 'balloon-flower-main.jpg',
+    author: 'Krzysztof Golik',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Platycodon_grandiflorus_in_Jardin_botanique_de_la_Charme.jpg',
+    title: 'Platycodon grandiflorus (도라지)',
+  },
 }
 
 export function getCcPhoto(speciesId: string): CcPhoto | undefined {
