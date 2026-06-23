@@ -39,6 +39,8 @@ describe('SpeciesPhoto', () => {
     expect(img.src).toContain('rose.jpg')
     expect(screen.getByText(/홍길동/)).toBeInTheDocument()
     expect(screen.getByText('CC BY 4.0')).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'CC BY 4.0' })).toHaveAttribute('href', 'https://creativecommons.org/licenses/by/4.0/')
+    expect(screen.getByRole('link', { name: '출처' })).toHaveAttribute('href', 'https://commons.wikimedia.org/x')
   })
 
   it('내 사진이 있으면 CC보다 우선해 blob 이미지를 보여준다', async () => {
@@ -53,5 +55,17 @@ describe('SpeciesPhoto', () => {
     render(<SpeciesPhoto speciesId="rose-main" category="화훼" variant="card" alt="장미" />)
     const img = (await screen.findByRole('img')) as HTMLImageElement
     expect(img.src).toBe('blob:mock-url') // CC의 rose.jpg가 아님
+  })
+
+  it('내 사진 로딩 중에는 CC·이모지로 새지 않고 빈 자리를 보여준다', () => {
+    vi.mocked(useSpeciesCoverPhotoId).mockReturnValue('ph1')
+    vi.mocked(getCcPhoto).mockReturnValue({
+      file: 'rose.jpg', author: 'x', license: 'CC BY 4.0', licenseUrl: 'u', sourceUrl: 'u',
+    })
+    vi.mocked(getPhoto).mockReturnValue(new Promise<undefined>(() => {})) // 영원히 pending
+    const { container } = render(<SpeciesPhoto speciesId="rose-main" category="화훼" variant="card" alt="장미" />)
+    expect(screen.queryByRole('img')).not.toBeInTheDocument() // CC img로 새지 않음
+    expect(screen.queryByText('🌸')).not.toBeInTheDocument()  // 이모지로 새지 않음
+    expect(container.querySelector('.sphoto--loading')).toBeTruthy()
   })
 })

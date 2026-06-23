@@ -5,10 +5,13 @@
   height: 44px;
   border-radius: var(--radius-card);
   object-fit: cover;
+  overflow: hidden;
+}
+.sphoto--card.sphoto--emoji,
+.sphoto--card.sphoto--loading {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
 }
 .sphoto--card.sphoto--emoji {
   font-size: 1.7rem;
@@ -25,10 +28,13 @@
   aspect-ratio: 16 / 10;
   border-radius: var(--radius-card);
   object-fit: cover;
+  overflow: hidden;
+}
+.sphoto--detail.sphoto--emoji,
+.sphoto--detail.sphoto--loading {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
 }
 .sphoto--detail.sphoto--emoji {
   font-size: 3.4rem;
