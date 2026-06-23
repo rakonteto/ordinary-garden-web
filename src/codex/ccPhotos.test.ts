@@ -127,6 +127,25 @@ const FRUIT_BERRY_SPECIES = [
   'goji-main',
 ]
 
+// ② 열째 배치 = 채소(잎·양념) 15종(비화훼 셋째 그룹).
+const VEGETABLE_LEAF_SPECIES = [
+  'lettuce-main',
+  'spinach-main',
+  'crown-daisy-main',
+  'chard-main',
+  'perilla-main',
+  'napa-cabbage-main',
+  'leaf-mustard-main',
+  'kale-main',
+  'bok-choy-main',
+  'garlic-chives-main',
+  'welsh-onion-main',
+  'scallion-main',
+  'onion-main',
+  'garlic-main',
+  'ginger-main',
+]
+
 // 공개·무료 배포에 안전한 자유 라이선스만 허용한다(NC/ND 불가).
 const ALLOWED_LICENSE = /^(CC0|Public Domain|CC BY \d\.\d|CC BY-SA \d\.\d)$/
 
@@ -189,6 +208,13 @@ describe('ccPhotos — CC 사진 매핑', () => {
 
   it('베리·덩굴 과수 12종이 모두 매핑돼 있다(② 아홉째 배치)', () => {
     for (const id of FRUIT_BERRY_SPECIES) {
+      expect(ccPhotos[id], `${id} 누락`).toBeDefined()
+      expect(getCcPhoto(id)).toBe(ccPhotos[id])
+    }
+  })
+
+  it('채소(잎·양념) 15종이 모두 매핑돼 있다(② 열째 배치)', () => {
+    for (const id of VEGETABLE_LEAF_SPECIES) {
       expect(ccPhotos[id], `${id} 누락`).toBeDefined()
       expect(getCcPhoto(id)).toBe(ccPhotos[id])
     }
