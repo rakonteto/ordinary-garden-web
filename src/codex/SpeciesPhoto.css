@@ -1,0 +1,54 @@
+/* 카드 썸네일 — 기존 .scard__emoji(1.7rem) 자리를 고정 박스로 대체(카드 높이 일관). */
+.sphoto--card {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-card);
+  object-fit: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.sphoto--card.sphoto--emoji {
+  font-size: 1.7rem;
+  line-height: 1;
+  background: var(--color-accent);
+}
+.sphoto--card.sphoto--loading {
+  background: var(--color-surface);
+}
+
+/* 상세 히어로 */
+.sphoto--detail {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-card);
+  object-fit: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.sphoto--detail.sphoto--emoji {
+  font-size: 3.4rem;
+  background: var(--color-accent);
+}
+.sphoto--detail.sphoto--loading {
+  background: var(--color-surface);
+}
+
+/* CC 출처 캡션(상세) */
+.sphoto__fig {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.sphoto__cc {
+  font-size: 0.72rem;
+  color: var(--color-text-weak);
+}
+.sphoto__cc a {
+  color: var(--color-primary-weak);
+}
