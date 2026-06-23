@@ -28,11 +28,6 @@ export default function SyncSection() {
             {status === 'syncing' ? '동기화 중…' : `마지막 동기화 · ${relativeSyncTime(lastSyncedAt, Date.now())}`}
           </p>
           {error && <p className="sync-error">동기화 실패 — 잠시 후 다시 시도해 주세요.</p>}
-          {error && (
-            <p className="sync-error" style={{ fontSize: '0.72rem', opacity: 0.75, wordBreak: 'break-all', marginTop: '0.25rem' }}>
-              {error}
-            </p>
-          )}
           <div className="sync-actions">
             <button className="sync-btn sync-btn-primary" disabled={status === 'syncing'} onClick={() => void syncNow()}>
               지금 동기화
