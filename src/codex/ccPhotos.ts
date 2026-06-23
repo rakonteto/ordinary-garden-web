@@ -456,6 +456,104 @@ export const ccPhotos: Record<string, CcPhoto> = {
     sourceUrl: 'https://commons.wikimedia.org/wiki/File:Yellow_Flowers_2020.jpg',
     title: 'Forsythia koreana (개나리)',
   },
+  // ── 장미 11계통 (② 일곱째 배치). 한국 육성종은 위키미디어에 확증 가능한
+  //    품종 사진이 없어 매핑하지 않고 이모지 폴백으로 둔다. ───────────────
+  'rosa-hybrid-tea': {
+    file: 'rosa-hybrid-tea.jpg',
+    author: 'T.Kiya',
+    license: 'CC BY-SA 2.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/2.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Rose,_Hommsrge_a_Barbara,_%E3%83%90%E3%83%A9,_%E3%82%AA%E3%83%9E%E3%83%BC%E3%82%B8%E3%83%A5_%E3%82%A2_%E3%83%90%E3%83%AB%E3%83%90%E3%83%A9_-_Flickr_-_T.Kiya.jpg',
+    title: "Rosa 'Hommage à Barbara' (하이브리드 티)",
+  },
+  'rosa-floribunda': {
+    file: 'rosa-floribunda.jpg',
+    author: 'Krishna k. sahh',
+    license: 'CC0',
+    licenseUrl: 'https://creativecommons.org/publicdomain/zero/1.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:White_and_pink_shrub_roses.jpg',
+    title: 'Rosa Floribunda (플로리분다)',
+  },
+  'rosa-grandiflora': {
+    file: 'rosa-grandiflora.jpg',
+    author: 'T.Kiya from Japan',
+    license: 'CC BY-SA 2.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/2.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Rose,_Queen_Elizabeth,_%E3%83%90%E3%83%A9,_%E3%82%AF%E3%82%A4%E3%83%BC%E3%83%B3_%E3%82%A8%E3%83%AA%E3%82%B6%E3%83%99%E3%82%B9,_(13183072693).jpg',
+    title: "Rosa 'Queen Elizabeth' (그란디플로라)",
+  },
+  'rosa-polyantha': {
+    file: 'rosa-polyantha.jpg',
+    author: 'T.Kiya from Japan',
+    license: 'CC BY-SA 2.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/2.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Rose,The_Fairy,%E3%83%90%E3%83%A9,%E3%82%B6%E3%83%BB%E3%83%95%E3%82%A7%E3%82%A2%E3%83%AA%E3%83%BC,_(8188560254).jpg',
+    title: "Rosa 'The Fairy' (폴리안타)",
+  },
+  'rosa-shrub': {
+    file: 'rosa-shrub.jpg',
+    author: 'Acabashi',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:%27Rosa_Sadlers_Wells%27_modern_shrub_rose_Capel_Manor_College_Gardens_Enfield_London_England.jpg',
+    title: 'Rosa Modern Shrub (모던 슈러브)',
+  },
+  'rosa-miniature': {
+    file: 'rosa-miniature.jpg',
+    author: 'Aniol',
+    license: 'CC BY-SA 3.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/3.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Mini_roser_florit.JPG',
+    title: 'Rosa Miniature (미니어처)',
+  },
+  'rosa-climbing': {
+    file: 'rosa-climbing.jpg',
+    author: 'Acabashi',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Pale_pink_climbing_rose_at_Harlow_Museum_%26_Walled_Gardens,_Essex_02.jpg',
+    title: 'Rosa Climbing (클라이밍)',
+  },
+  'rosa-rambler': {
+    file: 'rosa-rambler.jpg',
+    author: 'Geolina163',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Rosa_Kiftsgate_Rosarium_Baden_01.jpg',
+    title: "Rosa 'Kiftsgate' (램블러)",
+  },
+  'rosa-english': {
+    file: 'rosa-english.jpg',
+    author: 'F. D. Richards from Clinton, MI',
+    license: 'CC BY-SA 2.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/2.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Rosa_%27Ausgrab%27_-THE_ALNWICK_ROSE-_6_2021_DAR-_(51260869904).jpg',
+    title: "Rosa 'The Alnwick Rose' (잉글리시·데이비드 오스틴)",
+  },
+  'rosa-old-garden': {
+    file: 'rosa-old-garden.jpg',
+    author: 'Alexander Rahm',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Essig-Rose_(Haager_Stra%C3%9Fe,_Neuendettelsau)_20250617_072357.jpg',
+    title: 'Rosa gallica (올드 가든 로즈)',
+  },
+  'rosa-species': {
+    file: 'rosa-species.jpg',
+    author: 'Юрий Д.К.',
+    license: 'CC BY 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by/4.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Rosa_rugosa_in_Repinsky_Square,_Moscow,_May_2026_6.jpg',
+    title: 'Rosa rugosa (원종·해당화)',
+  },
 }
 
 export function getCcPhoto(speciesId: string): CcPhoto | undefined {

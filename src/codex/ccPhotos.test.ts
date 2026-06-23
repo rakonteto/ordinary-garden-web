@@ -78,6 +78,21 @@ const WOODY_SPECIES = [
   'forsythia-main',
 ]
 
+// ② 일곱째 배치 = 장미 11계통(한국 육성종은 확증 사진 없어 미매핑).
+const ROSE_SPECIES = [
+  'rosa-hybrid-tea',
+  'rosa-floribunda',
+  'rosa-grandiflora',
+  'rosa-polyantha',
+  'rosa-shrub',
+  'rosa-miniature',
+  'rosa-climbing',
+  'rosa-rambler',
+  'rosa-english',
+  'rosa-old-garden',
+  'rosa-species',
+]
+
 // 공개·무료 배포에 안전한 자유 라이선스만 허용한다(NC/ND 불가).
 const ALLOWED_LICENSE = /^(CC0|Public Domain|CC BY \d\.\d|CC BY-SA \d\.\d)$/
 
@@ -119,6 +134,13 @@ describe('ccPhotos — CC 사진 매핑', () => {
 
   it('덩굴·화목 11종이 모두 매핑돼 있다(② 여섯째 배치)', () => {
     for (const id of WOODY_SPECIES) {
+      expect(ccPhotos[id], `${id} 누락`).toBeDefined()
+      expect(getCcPhoto(id)).toBe(ccPhotos[id])
+    }
+  })
+
+  it('장미 11계통이 모두 매핑돼 있다(② 일곱째 배치)', () => {
+    for (const id of ROSE_SPECIES) {
       expect(ccPhotos[id], `${id} 누락`).toBeDefined()
       expect(getCcPhoto(id)).toBe(ccPhotos[id])
     }
