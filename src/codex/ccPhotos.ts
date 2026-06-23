@@ -12,8 +12,52 @@ export interface CcPhoto {
 
 export const CC_BASE = 'https://rakonteto.github.io/ordinary-garden-data/codex/'
 
-/** 종 id → CC 사진. ②에서 채운다(지금은 비어 있어 자연히 이모지로 폴백). */
-export const ccPhotos: Record<string, CcPhoto> = {}
+/** 종 id → CC 사진. ②에서 점진 누적(현재: 수국 5종). 출처=위키미디어 공용, 자유 라이선스만(CC0·PD·BY·BY-SA). */
+export const ccPhotos: Record<string, CcPhoto> = {
+  'hydrangea-macrophylla': {
+    file: 'hydrangea-macrophylla.jpg',
+    author: 'Michele Dorsey Walfred',
+    license: 'CC BY 2.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Blue_Hydrangea_Mathilda_Gutges_-blueflower.jpg',
+    title: 'Blue Hydrangea (Mathilda Gutges)',
+  },
+  'hydrangea-serrata': {
+    file: 'hydrangea-serrata.jpg',
+    author: 'Motohiro Sunouchi',
+    license: 'CC BY 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by/4.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Hydrangea_serrata_var._serrata_%27%E4%BB%81%E6%B7%80%E5%85%AB%E9%87%8D_-_Niyodo_Yae%27_20260606_193423.jpg',
+    title: 'Hydrangea serrata (Niyodo Yae)',
+  },
+  'hydrangea-paniculata': {
+    file: 'hydrangea-paniculata.jpg',
+    author: 'Strubbl',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Bl%C3%BCte_der_Rispen-Hortensie_2024-08-22.jpg',
+    title: 'Blüte der Rispen-Hortensie',
+  },
+  'hydrangea-arborescens': {
+    file: 'hydrangea-arborescens.jpg',
+    author: 'Mike Peel (www.mikepeel.net)',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:At_Dunham_Massey_2023_61.jpg',
+    title: 'At Dunham Massey (Annabelle-type)',
+  },
+  'hydrangea-quercifolia': {
+    file: 'hydrangea-quercifolia.jpg',
+    author: 'Denis.prévôt',
+    license: 'CC BY-SA 3.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/3.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Hydrangea_quercifolia_-_Fleurs-2.jpg',
+    title: 'Hydrangea quercifolia (Fleurs)',
+  },
+}
 
 export function getCcPhoto(speciesId: string): CcPhoto | undefined {
   return ccPhotos[speciesId]

@@ -36,6 +36,16 @@ export default defineConfig({
               expiration: { maxEntries: 4, maxAgeSeconds: 60 * 60 * 6 },
             },
           },
+          {
+            // 도감 CC 사진(공개 데이터 repo, 거의 불변) — 첫 조회 후 오프라인 표시.
+            urlPattern: /^https:\/\/rakonteto\.github\.io\/ordinary-garden-data\/codex\//,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'codex-photos',
+              expiration: { maxEntries: 300, maxAgeSeconds: 60 * 60 * 24 * 30 },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
         ],
       },
     }),
