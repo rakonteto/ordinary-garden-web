@@ -12,7 +12,7 @@ export interface CcPhoto {
 
 export const CC_BASE = 'https://rakonteto.github.io/ordinary-garden-data/codex/'
 
-/** 종 id → CC 사진. ②에서 점진 누적(현재: 수국 5종). 출처=위키미디어 공용, 자유 라이선스만(CC0·PD·BY·BY-SA). */
+/** 종 id → CC 사진. ②에서 점진 누적(현재: 수국 5종·작약 5종). 출처=위키미디어 공용, 자유 라이선스만(CC0·PD·BY·BY-SA). */
 export const ccPhotos: Record<string, CcPhoto> = {
   'hydrangea-macrophylla': {
     file: 'hydrangea-macrophylla.jpg',
@@ -56,6 +56,50 @@ export const ccPhotos: Record<string, CcPhoto> = {
     licenseUrl: 'https://creativecommons.org/licenses/by-sa/3.0/',
     sourceUrl: 'https://commons.wikimedia.org/wiki/File:Hydrangea_quercifolia_-_Fleurs-2.jpg',
     title: 'Hydrangea quercifolia (Fleurs)',
+  },
+  // ── 작약·모란 5종 (② 둘째 배치) ─────────────────────────────
+  'paeonia-lactiflora': {
+    file: 'paeonia-lactiflora.jpg',
+    author: 'Joanna Boisse',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Atlas_roslin_pl_Piwonia_chi%C5%84ska_10035_7511.jpg',
+    title: 'Paeonia lactiflora (작약)',
+  },
+  'paeonia-suffruticosa': {
+    file: 'paeonia-suffruticosa.jpg',
+    author: 'Andrey Butko',
+    license: 'CC BY-SA 3.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/3.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Ab_plant_483.jpg',
+    title: 'Paeonia suffruticosa (모란)',
+  },
+  'paeonia-itoh': {
+    file: 'paeonia-itoh.jpg',
+    author: 'F. D. Richards',
+    license: 'CC BY-SA 2.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/2.0/',
+    sourceUrl:
+      "https://commons.wikimedia.org/wiki/File:Paeonia_%27Bartzella%27_6_2021_Itoh-_(51218937473).jpg",
+    title: "Paeonia Itoh 'Bartzella' (이토 작약)",
+  },
+  'paeonia-japonica': {
+    file: 'paeonia-japonica.jpg',
+    author: 'Alpsdake',
+    license: 'CC BY-SA 3.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/3.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Paeonia_japonica_flower.JPG',
+    title: 'Paeonia japonica (백작약)',
+  },
+  'paeonia-obovata': {
+    file: 'paeonia-obovata.jpg',
+    author: 'Motohiro Sunouchi',
+    license: 'CC BY 2.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
+    sourceUrl:
+      "https://commons.wikimedia.org/wiki/File:Paeonia_obovata_%27Honoh_-_%E7%82%8E%27_Maxim.,_M%C3%A9m._Acad._Imp._Sci._St.-P%C3%A9tersbourg_Divers_Savans_9_39_(1859)_(40905468113).jpg",
+    title: "Paeonia obovata 'Honoh' (산작약)",
   },
 }
 
