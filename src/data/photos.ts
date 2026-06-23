@@ -26,9 +26,14 @@ export async function softDeletePhoto(id: string, now = Date.now()): Promise<voi
   await db.journalPhotos.put({ ...existing, deleted: true, blob: undefined, updatedAt: now })
 }
 
+/** 살아있는 사진(미삭제 + blob 보유) 판별. */
+export function isLivePhoto(p: JournalPhoto): boolean {
+  return !p.deleted && !!p.blob
+}
+
 export async function listPhotosByOwner(ownerId: string): Promise<JournalPhoto[]> {
   const all = await db.journalPhotos.where('ownerId').equals(ownerId).toArray()
   return all
-    .filter((p) => !p.deleted && p.blob)
+    .filter(isLivePhoto)
     .sort((a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0) || a.updatedAt - b.updatedAt)
 }

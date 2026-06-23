@@ -1,5 +1,5 @@
 import { db } from './db'
-import { putPhoto, softDeletePhoto, listPhotosByOwner } from './photos'
+import { putPhoto, softDeletePhoto, listPhotosByOwner, isLivePhoto } from './photos'
 import type { JournalPhoto } from './types'
 
 const PREFIX = 'species:'
@@ -33,6 +33,7 @@ export async function removeSpeciesPhoto(speciesId: string, now = Date.now()): P
 export async function listSpeciesCovers(): Promise<Array<{ speciesId: string; photo: JournalPhoto }>> {
   const rows = await db.journalPhotos.where('ownerId').startsWith(PREFIX).toArray()
   return rows
-    .filter((p) => !p.deleted && p.blob)
+    .filter(isLivePhoto)
+    .sort((a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0) || a.updatedAt - b.updatedAt)
     .map((photo) => ({ speciesId: photo.ownerId.slice(PREFIX.length), photo }))
 }
