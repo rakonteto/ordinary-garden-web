@@ -111,6 +111,22 @@ const FRUIT_TREE_SPECIES = [
   'pomegranate-main',
 ]
 
+// ② 아홉째 배치 = 베리·덩굴 과수 12종(비화훼 둘째 그룹).
+const FRUIT_BERRY_SPECIES = [
+  'blueberry-highbush',
+  'grape-main',
+  'kiwi-deliciosa',
+  'kiwi-chinensis',
+  'kiwi-arguta',
+  'raspberry-main',
+  'blackberry-main',
+  'bokbunja-main',
+  'aronia-main',
+  'goumi-main',
+  'mulberry-main',
+  'goji-main',
+]
+
 // 공개·무료 배포에 안전한 자유 라이선스만 허용한다(NC/ND 불가).
 const ALLOWED_LICENSE = /^(CC0|Public Domain|CC BY \d\.\d|CC BY-SA \d\.\d)$/
 
@@ -166,6 +182,13 @@ describe('ccPhotos — CC 사진 매핑', () => {
 
   it('과수·교목 14종이 모두 매핑돼 있다(② 여덟째 배치)', () => {
     for (const id of FRUIT_TREE_SPECIES) {
+      expect(ccPhotos[id], `${id} 누락`).toBeDefined()
+      expect(getCcPhoto(id)).toBe(ccPhotos[id])
+    }
+  })
+
+  it('베리·덩굴 과수 12종이 모두 매핑돼 있다(② 아홉째 배치)', () => {
+    for (const id of FRUIT_BERRY_SPECIES) {
       expect(ccPhotos[id], `${id} 누락`).toBeDefined()
       expect(getCcPhoto(id)).toBe(ccPhotos[id])
     }

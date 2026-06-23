@@ -672,6 +672,109 @@ export const ccPhotos: Record<string, CcPhoto> = {
     sourceUrl: 'https://commons.wikimedia.org/wiki/File:Pomegranate_on_the_Branch.jpg',
     title: 'Punica granatum (석류)',
   },
+  // ── 베리·덩굴 과수 12종 (② 아홉째 배치). 비화훼 둘째 그룹. 열매가 대표라
+  //    열매 편향으로 골랐다. 복분자(Rubus coreanus)는 위키미디어에 종 라벨
+  //    열매 사진이 한 장뿐이라 그것(붉은·검은 열매 가지)으로, 구기자는 종
+  //    확증 사진이 꽃뿐이라 선명한 구기자(고지) 열매로 정직하게 매핑한다. ──
+  'blueberry-highbush': {
+    file: 'blueberry-highbush.jpg',
+    author: 'Aw58',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Bor%C3%B3wka_ameryka%C5%84ska_-_2023.08.12.jpg',
+    title: 'Vaccinium corymbosum (블루베리)',
+  },
+  'grape-main': {
+    file: 'grape-main.jpg',
+    author: 'Jules Verne Times Two',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Bunch_of_grapes_amidst_vine_leaves,_Ponte_de_Sor_(approx._GPS_location)_julesvernex2.jpg',
+    title: 'Vitis (포도)',
+  },
+  'kiwi-deliciosa': {
+    file: 'kiwi-deliciosa.jpg',
+    author: 'Ivar Leidus',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Kiwifruit_cross_section.jpg',
+    title: 'Actinidia deliciosa (참다래·그린키위)',
+  },
+  'kiwi-chinensis': {
+    file: 'kiwi-chinensis.jpg',
+    author: 'Ivar Leidus',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl: "https://commons.wikimedia.org/wiki/File:Kiwifruit_%27Gold%27_cross_section.jpg",
+    title: 'Actinidia chinensis (골드키위)',
+  },
+  'kiwi-arguta': {
+    file: 'kiwi-arguta.jpg',
+    author: 'anagoria',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:20240928_Kiwibeeren_-_actinidia_arguta_anagoria.jpg',
+    title: 'Actinidia arguta (토종다래·하디키위)',
+  },
+  'raspberry-main': {
+    file: 'raspberry-main.jpg',
+    author: 'Ivar Leidus',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Raspberries_(Rubus_idaeus).jpg',
+    title: 'Rubus idaeus (라즈베리)',
+  },
+  'blackberry-main': {
+    file: 'blackberry-main.jpg',
+    author: 'Ivar Leidus',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Blackberry_(Rubus_fruticosus).jpg',
+    title: 'Rubus fruticosus (블랙베리)',
+  },
+  'bokbunja-main': {
+    file: 'bokbunja-main.jpg',
+    author: '성락 + 연주',
+    license: 'CC BY 2.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Korean_raspberry_2008.jpg',
+    title: 'Rubus coreanus (복분자)',
+  },
+  'aronia-main': {
+    file: 'aronia-main.jpg',
+    author: 'MiraculixHB',
+    license: 'Public Domain',
+    licenseUrl: 'https://creativecommons.org/publicdomain/mark/1.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Aronia_berries.JPG',
+    title: 'Aronia melanocarpa (아로니아)',
+  },
+  'goumi-main': {
+    file: 'goumi-main.jpg',
+    author: 'VoDeTan2 Dericks-Tan',
+    license: 'CC BY-SA 3.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/3.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Elaeagnus_multiflora_Frucht.jpg',
+    title: 'Elaeagnus multiflora (뜰보리수)',
+  },
+  'mulberry-main': {
+    file: 'mulberry-main.jpg',
+    author: 'Chiring chandan',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Morus_alba_(White_mulberry).jpg',
+    title: 'Morus alba (오디·뽕나무)',
+  },
+  'goji-main': {
+    file: 'goji-main.jpg',
+    author: 'Jeon Sang O',
+    license: 'CC0',
+    licenseUrl: 'https://creativecommons.org/publicdomain/zero/1.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Goji_berries.jpg',
+    title: 'Lycium chinense (구기자)',
+  },
 }
 
 export function getCcPhoto(speciesId: string): CcPhoto | undefined {
