@@ -19,6 +19,7 @@ import { succulent } from './plants/succulent'
 import { ornamentalWoody } from './plants/ornamentalWoody'
 import { fern } from './plants/fern'
 import { moss } from './plants/moss'
+import { wildflower } from './plants/wildflower'
 
 export type { CodexCategory, CodexGenus, CodexSpecies, CodexVariety } from './types'
 
@@ -40,4 +41,5 @@ export const codex: CodexGenus[] = [
   ...ornamentalWoody,
   ...fern,
   ...moss,
+  ...wildflower,
 ]
