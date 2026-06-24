@@ -182,6 +182,41 @@ const HERB_SPECIES = [
   'lemon-balm-main',
 ]
 
+// ② 열셋째 배치 = 관엽 19종(비화훼).
+const FOLIAGE_SPECIES = [
+  'monstera-main',
+  'pothos-main',
+  'philodendron-main',
+  'rubber-plant-main',
+  'parlor-palm-main',
+  'areca-palm-main',
+  'snake-plant-main',
+  'peace-lily-main',
+  'dracaena-main',
+  'calathea-main',
+  'dieffenbachia-main',
+  'anthurium-main',
+  'hoya-main',
+  'peperomia-main',
+  'muehlenbeckia-complexa',
+  'muehlenbeckia-astonii',
+  'marengo-ivy-main',
+  'fittonia-redstar',
+  'breynia-main',
+]
+
+// ② 열넷째 배치 = 다육·관상수·고사리·이끼(비화훼 마무리).
+// 괴마옥(kaimagyoku-main)은 일본 작출 교배종이라 자유 라이선스 사진이 없어 미매핑(이모지 폴백).
+const SUCCULENT_SPECIES = ['mansei-consolea', 'mansei-lactea']
+const ORNAMENTAL_WOODY_SPECIES = [
+  'acacia-baileyana-purpurea',
+  'jacaranda-main',
+  'blue-ice-cypress-main',
+  'yulma-main',
+]
+const FERN_SPECIES = ['duffii-fern-main', 'pteris-blumeana', 'foxtail-fern-myers']
+const MOSS_SPECIES = ['bidan-moss-main']
+
 // 공개·무료 배포에 안전한 자유 라이선스만 허용한다(NC/ND 불가).
 const ALLOWED_LICENSE = /^(CC0|Public Domain|CC BY \d\.\d|CC BY-SA \d\.\d)$/
 
@@ -268,6 +303,30 @@ describe('ccPhotos — CC 사진 매핑', () => {
       expect(ccPhotos[id], `${id} 누락`).toBeDefined()
       expect(getCcPhoto(id)).toBe(ccPhotos[id])
     }
+  })
+
+  it('관엽 19종이 모두 매핑돼 있다(② 열셋째 배치)', () => {
+    for (const id of FOLIAGE_SPECIES) {
+      expect(ccPhotos[id], `${id} 누락`).toBeDefined()
+      expect(getCcPhoto(id)).toBe(ccPhotos[id])
+    }
+  })
+
+  it('다육·관상수·고사리·이끼가 모두 매핑돼 있다(② 열넷째 배치)', () => {
+    const ids = [
+      ...SUCCULENT_SPECIES,
+      ...ORNAMENTAL_WOODY_SPECIES,
+      ...FERN_SPECIES,
+      ...MOSS_SPECIES,
+    ]
+    for (const id of ids) {
+      expect(ccPhotos[id], `${id} 누락`).toBeDefined()
+      expect(getCcPhoto(id)).toBe(ccPhotos[id])
+    }
+  })
+
+  it('괴마옥은 미매핑이다(자유 라이선스 사진 부재로 의도적 제외)', () => {
+    expect(ccPhotos['kaimagyoku-main']).toBeUndefined()
   })
 
   const entries = Object.entries(ccPhotos)
