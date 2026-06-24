@@ -217,6 +217,29 @@ const ORNAMENTAL_WOODY_SPECIES = [
 const FERN_SPECIES = ['duffii-fern-main', 'pteris-blumeana', 'foxtail-fern-myers']
 const MOSS_SPECIES = ['bidan-moss-main']
 
+// ② 열다섯째 배치 = 자생 야생화 19종(봄 8·여름 6·가을 5).
+const WILDFLOWER_SPECIES = [
+  'adonis-main',
+  'hepatica-main',
+  'pulsatilla-main',
+  'erythronium-main',
+  'corydalis-main',
+  'bleeding-heart-main',
+  'primula-sieboldii-main',
+  'native-violet-main',
+  'lily-of-the-valley-main',
+  'aquilegia-main',
+  'daylily-main',
+  'lychnis-main',
+  'astilbe-main',
+  'dianthus-main',
+  'gentian-main',
+  'aconitum-main',
+  'elsholtzia-main',
+  'adenophora-main',
+  'sanguisorba-main',
+]
+
 // 공개·무료 배포에 안전한 자유 라이선스만 허용한다(NC/ND 불가).
 const ALLOWED_LICENSE = /^(CC0|Public Domain|CC BY \d\.\d|CC BY-SA \d\.\d)$/
 
@@ -320,6 +343,13 @@ describe('ccPhotos — CC 사진 매핑', () => {
       ...MOSS_SPECIES,
     ]
     for (const id of ids) {
+      expect(ccPhotos[id], `${id} 누락`).toBeDefined()
+      expect(getCcPhoto(id)).toBe(ccPhotos[id])
+    }
+  })
+
+  it('자생 야생화 19종이 모두 매핑돼 있다(② 열다섯째 배치)', () => {
+    for (const id of WILDFLOWER_SPECIES) {
       expect(ccPhotos[id], `${id} 누락`).toBeDefined()
       expect(getCcPhoto(id)).toBe(ccPhotos[id])
     }

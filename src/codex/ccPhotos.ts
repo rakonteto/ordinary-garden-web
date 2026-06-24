@@ -1377,6 +1377,169 @@ export const ccPhotos: Record<string, CcPhoto> = {
     sourceUrl: 'https://commons.wikimedia.org/wiki/File:Leucobryum_glaucum_01.JPG',
     title: 'Leucobryum glaucum (비단이끼)',
   },
+  // ── 자생 야생화(wildflower) 19종 (② 열다섯째 배치) ──────────────
+  // corydalis·adenophora는 해당 종(C. remota·A. verticillata)의 자유 사진이 없어
+  // 같은 속(현호색속·잔대속)의 근연 자생종으로 대표 매핑(title에 속 명시).
+  // lily-of-the-valley는 C. keiskei와 시각상 동일한 C. majalis로 매핑(title에 명시).
+  'adonis-main': {
+    file: 'adonis-main.jpg',
+    author: 'Averater',
+    license: 'CC BY-SA 3.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/3.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Adonis_amurensis_03.jpg',
+    title: 'Adonis amurensis (복수초)',
+  },
+  'hepatica-main': {
+    file: 'hepatica-main.jpg',
+    author: '阿橋 HQ',
+    license: 'CC BY-SA 2.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/2.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:%E5%B0%96%E7%93%A3%E7%8D%90%E8%80%B3%E7%B4%B0%E8%BE%9B_Hepatica_asiatica_f_acutiloba_-%E9%A6%96%E7%88%BE%E5%88%87%E9%A0%AD%E5%B1%B1%E5%85%AC%E5%9C%92_Seoul,_South_Korea-_(33142022393).jpg',
+    title: 'Hepatica asiatica (노루귀)',
+  },
+  'pulsatilla-main': {
+    file: 'pulsatilla-main.jpg',
+    author: '阿橋 HQ',
+    license: 'CC BY-SA 2.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/2.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:%E6%9C%9D%E9%AE%AE%E7%99%BD%E9%A0%AD%E7%BF%81_Pulsatilla_koreana_-%E5%8D%97%E9%9F%93%E6%99%A8%E9%9D%9C%E6%A8%B9%E6%9C%A8%E5%9C%92_Garden_of_Morning_Calm,_South_Korea-_(33140364293).jpg',
+    title: 'Pulsatilla koreana (할미꽃)',
+  },
+  'erythronium-main': {
+    file: 'erythronium-main.jpg',
+    author: "M's photography from Tokyo, Japan",
+    license: 'CC BY 2.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:%22KATAKURI%22_Erythronium_japonicum_Erythronium_-_Flickr_-_ai3310X.jpg',
+    title: 'Erythronium japonicum (얼레지)',
+  },
+  'corydalis-main': {
+    file: 'corydalis-main.jpg',
+    author: 'Alexey Yakovlev',
+    license: 'CC BY 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by/4.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Corydalis_turtschaninovii.jpg',
+    title: 'Corydalis turtschaninovii (현호색속)',
+  },
+  'bleeding-heart-main': {
+    file: 'bleeding-heart-main.jpg',
+    author: 'Cephas',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Lamprocapnos_spectabilis_JRVdH_01.jpg',
+    title: 'Lamprocapnos spectabilis (금낭화)',
+  },
+  'primula-sieboldii-main': {
+    file: 'primula-sieboldii-main.jpg',
+    author: 'AfroBrazilian : Aleksandrs Balodis',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Primula_sieboldii_01.JPG',
+    title: 'Primula sieboldii (앵초)',
+  },
+  'native-violet-main': {
+    file: 'native-violet-main.jpg',
+    author: 'Grrewa',
+    license: 'CC BY-SA 3.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/3.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Viola_mandshurica_in_Korea.jpg',
+    title: 'Viola mandshurica (제비꽃)',
+  },
+  'lily-of-the-valley-main': {
+    file: 'lily-of-the-valley-main.jpg',
+    author: 'Ivar Leidus',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Convallaria_majalis_inflorescence_-_Keila.jpg',
+    title: 'Convallaria majalis (은방울꽃)',
+  },
+  'aquilegia-main': {
+    file: 'aquilegia-main.jpg',
+    author: 'sunoochi',
+    license: 'CC BY 2.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Aquilegia_buergeriana_Siebold_et_Zucc._var._oxysepala_%E2%80%98Aomori%E2%80%99_(Trautv._et_C.A.Mey.)_Kitam._(51239459758).jpg',
+    title: 'Aquilegia buergeriana var. oxysepala (매발톱)',
+  },
+  'daylily-main': {
+    file: 'daylily-main.jpg',
+    author: 'Eilif Mikkelsen',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Hemerocallis_fulva_by_Eilif_Mikkelsen_2.jpg',
+    title: 'Hemerocallis fulva (원추리)',
+  },
+  'lychnis-main': {
+    file: 'lychnis-main.jpg',
+    author: 'Marco Schmidt [1]',
+    license: 'CC BY-SA 3.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/3.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Lychnis_cognata_MS3982.JPG',
+    title: 'Lychnis cognata (동자꽃)',
+  },
+  'astilbe-main': {
+    file: 'astilbe-main.jpg',
+    author: 'Jim Capaldi from Springfield PA, United States of America',
+    license: 'CC BY 2.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Astilbe_rubra.jpg',
+    title: 'Astilbe rubra (노루오줌)',
+  },
+  'dianthus-main': {
+    file: 'dianthus-main.jpg',
+    author: 'A S M Jobaer',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Dianthus_chinensis_flower_and_buds,_Dhaka,_Bangladesh_01.jpg',
+    title: 'Dianthus chinensis (패랭이꽃)',
+  },
+  'gentian-main': {
+    file: 'gentian-main.jpg',
+    author: 'harum.koh from Kobe city, Japan',
+    license: 'CC BY-SA 2.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/2.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Japanese_gentian_(Gentiana_scabra_var._buergeri)_(29752458433).jpg',
+    title: 'Gentiana scabra (용담)',
+  },
+  'elsholtzia-main': {
+    file: 'elsholtzia-main.jpg',
+    author: 'bastus917',
+    license: 'CC BY-SA 2.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/2.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Elsholtzia_splendens_6.jpg',
+    title: 'Elsholtzia splendens (꽃향유)',
+  },
+  'sanguisorba-main': {
+    file: 'sanguisorba-main.jpg',
+    author: 'TANAKA Juuyoh (田中十洋)',
+    license: 'CC BY 2.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Sanguisorba_Hakusanensis.jpg',
+    title: 'Sanguisorba hakusanensis (산오이풀)',
+  },
+  'aconitum-main': {
+    file: 'aconitum-main.jpg',
+    author: 'Qwert1234',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Aconitum_jaluense_subsp._iwatekense_3.JPG',
+    title: 'Aconitum jaluense subsp. iwatekense (투구꽃)',
+  },
+  'adenophora-main': {
+    file: 'adenophora-main.jpg',
+    author: 'Koda6029',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:%E3%83%8F%E3%82%AF%E3%82%B5%E3%83%B3%E3%82%B7%E3%83%A3%E3%82%B8%E3%83%B3%EF%BC%88%E3%82%A2%E3%83%9D%E3%82%A4%E5%B2%B3%EF%BC%89.jpg',
+    title: 'Adenophora triphylla (잔대속)',
+  },
 }
 
 export function getCcPhoto(speciesId: string): CcPhoto | undefined {
