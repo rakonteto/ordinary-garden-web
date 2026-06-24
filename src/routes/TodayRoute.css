@@ -1,0 +1,8 @@
+.today__ptr {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-size: 0.85rem;
+  color: var(--color-text-weak);
+}
