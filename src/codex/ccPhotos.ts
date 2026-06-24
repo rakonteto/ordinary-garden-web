@@ -901,6 +901,117 @@ export const ccPhotos: Record<string, CcPhoto> = {
     sourceUrl: 'https://commons.wikimedia.org/wiki/File:Ginger_.jpg',
     title: 'Zingiber officinale (생강)',
   },
+  // ② 열한째 배치 = 채소(열매·뿌리) 13종(비화훼 넷째 그룹). 가식부(열매·덩이줄기·
+  //    뿌리)가 대표라 그 부위로 골랐다. 감자=감자 바구니, 무=흰 다이콘, 가지=줄기에
+  //    달린 길쭉 보라가지, 호박=애호박 자유 사진이 없어 정직하게 늙은호박류로 매핑. ──
+  'tomato-main': {
+    file: 'tomato-main.jpg',
+    author: 'Jubair Bin Iqbal',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Bangladeshi_Tomato.jpg',
+    title: 'Solanum lycopersicum (토마토)',
+  },
+  'pepper-main': {
+    file: 'pepper-main.jpg',
+    author: 'yoopilsun',
+    license: 'CC0',
+    licenseUrl: 'https://creativecommons.org/publicdomain/zero/1.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Korean_chillies.jpg',
+    title: 'Capsicum annuum (고추)',
+  },
+  'eggplant-main': {
+    file: 'eggplant-main.jpg',
+    author: 'Kolforn',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:-2017-06-21_Aubergine,_Trimingham.JPG',
+    title: 'Solanum melongena (가지)',
+  },
+  'potato-main': {
+    file: 'potato-main.jpg',
+    author: 'Peachyeung316',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:A_basket_of_Potatoes_at_Tuen_Mun.jpg',
+    title: 'Solanum tuberosum (감자)',
+  },
+  'cucumber-main': {
+    file: 'cucumber-main.jpg',
+    author: 'Michael Garlick',
+    license: 'CC BY-SA 2.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/2.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:RHS_Bridgewater,_The_Fruit_House,_Cucumbers_-_geograph.org.uk_-_7017377.jpg',
+    title: 'Cucumis sativus (오이)',
+  },
+  'squash-main': {
+    file: 'squash-main.jpg',
+    author: 'George Chernilevsky',
+    license: 'Public Domain',
+    licenseUrl: 'https://creativecommons.org/publicdomain/mark/1.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Cucurbita_2018_G2.jpg',
+    title: 'Cucurbita spp. (애호박·호박)',
+  },
+  'korean-melon-main': {
+    file: 'korean-melon-main.jpg',
+    author: 'Uo3rt',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Ougon-makuwa.JPG',
+    title: 'Cucumis melo var. makuwa (참외)',
+  },
+  'radish-main': {
+    file: 'radish-main.jpg',
+    author: 'Daderot',
+    license: 'CC0',
+    licenseUrl: 'https://creativecommons.org/publicdomain/zero/1.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Daikon_-_Harbourside_Market,_Wellington,_New_Zealand_-_DSC09775.jpg',
+    title: 'Raphanus sativus (무)',
+  },
+  'carrot-main': {
+    file: 'carrot-main.jpg',
+    author: 'woodleywonderworks',
+    license: 'CC BY 2.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Carrot_harvest.jpg',
+    title: 'Daucus carota (당근)',
+  },
+  'sweet-potato-main': {
+    file: 'sweet-potato-main.jpg',
+    author: "Filo gèn'",
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Ipomoea_batatas_-_Tubers.jpg',
+    title: 'Ipomoea batatas (고구마)',
+  },
+  'corn-main': {
+    file: 'corn-main.jpg',
+    author: 'Forest and Kim Starr',
+    license: 'CC BY 2.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Starr-200723-7940-Zea_mays-Hawaiian_Supersweet_10_harvested_cobs-Hawea_Pl_Olinda-Maui_(50336255331).jpg',
+    title: 'Zea mays (옥수수)',
+  },
+  'kidney-bean-main': {
+    file: 'kidney-bean-main.jpg',
+    author: 'Bean appreciator',
+    license: 'CC0',
+    licenseUrl: 'https://creativecommons.org/publicdomain/zero/1.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Red_kidney_beans_2024-11-27.jpg',
+    title: 'Phaseolus vulgaris (강낭콩)',
+  },
+  'pea-main': {
+    file: 'pea-main.jpg',
+    author: 'Kolforn',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:-2019-07-29_Forming_garden_pea_pods_(Pisum_sativum),_Trimingham.JPG',
+    title: 'Pisum sativum (완두)',
+  },
 }
 
 export function getCcPhoto(speciesId: string): CcPhoto | undefined {

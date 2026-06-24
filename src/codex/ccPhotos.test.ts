@@ -146,6 +146,23 @@ const VEGETABLE_LEAF_SPECIES = [
   'ginger-main',
 ]
 
+// ② 열한째 배치 = 채소(열매·뿌리) 13종(비화훼 넷째 그룹).
+const VEGETABLE_FRUIT_SPECIES = [
+  'tomato-main',
+  'pepper-main',
+  'eggplant-main',
+  'potato-main',
+  'cucumber-main',
+  'squash-main',
+  'korean-melon-main',
+  'radish-main',
+  'carrot-main',
+  'sweet-potato-main',
+  'corn-main',
+  'kidney-bean-main',
+  'pea-main',
+]
+
 // 공개·무료 배포에 안전한 자유 라이선스만 허용한다(NC/ND 불가).
 const ALLOWED_LICENSE = /^(CC0|Public Domain|CC BY \d\.\d|CC BY-SA \d\.\d)$/
 
@@ -215,6 +232,13 @@ describe('ccPhotos — CC 사진 매핑', () => {
 
   it('채소(잎·양념) 15종이 모두 매핑돼 있다(② 열째 배치)', () => {
     for (const id of VEGETABLE_LEAF_SPECIES) {
+      expect(ccPhotos[id], `${id} 누락`).toBeDefined()
+      expect(getCcPhoto(id)).toBe(ccPhotos[id])
+    }
+  })
+
+  it('채소(열매·뿌리) 13종이 모두 매핑돼 있다(② 열한째 배치)', () => {
+    for (const id of VEGETABLE_FRUIT_SPECIES) {
       expect(ccPhotos[id], `${id} 누락`).toBeDefined()
       expect(getCcPhoto(id)).toBe(ccPhotos[id])
     }
