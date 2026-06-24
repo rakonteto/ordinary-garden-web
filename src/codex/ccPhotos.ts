@@ -1012,6 +1012,134 @@ export const ccPhotos: Record<string, CcPhoto> = {
       'https://commons.wikimedia.org/wiki/File:-2019-07-29_Forming_garden_pea_pods_(Pisum_sativum),_Trimingham.JPG',
     title: 'Pisum sativum (완두)',
   },
+  // ② 열두째 배치 = 허브 15종(비화훼 다섯째 그룹). 잎·전초가 대표지만 꽃이 대표인
+  //    종(라벤더 2·캐모마일 2·차이브)은 꽃으로 매핑. Andromeda(들쭉히스)·Burmese
+  //    coriander 등 동명 오염은 시각배제하고 종 확증본만 골랐다. ──────────────
+  'basil-main': {
+    file: 'basil-main.jpg',
+    author: 'BernaBotto',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Ocimum_Basilicum_leaf_lighted_by_the_left.jpg',
+    title: 'Ocimum basilicum (바질)',
+  },
+  'lavender-english': {
+    file: 'lavender-english.jpg',
+    author: 'Didier Descouens',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:(MHNT)_Bombus_pascuorum_on_Lavandula_angustifolia.jpg',
+    title: 'Lavandula angustifolia (잉글리시 라벤더)',
+  },
+  'lavender-french': {
+    file: 'lavender-french.jpg',
+    author: 'Charlie Marshall from Bristol UK, United Kingdom',
+    license: 'CC BY 2.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Versatile_Plant_(53683200350).jpg',
+    title: 'Lavandula stoechas (프렌치·스페인 라벤더)',
+  },
+  'rosemary-main': {
+    file: 'rosemary-main.jpg',
+    author: 'Christian Ferrer',
+    license: 'CC BY 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by/4.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Rosmarinus_officinalis_in_Vieussan.jpg',
+    title: 'Salvia rosmarinus (로즈마리)',
+  },
+  'thyme-main': {
+    file: 'thyme-main.jpg',
+    author: 'Isasza',
+    license: 'CC0',
+    licenseUrl: 'https://creativecommons.org/publicdomain/zero/1.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:D%C3%A9tail_sur_des_fleurs_d%27une_touffe_de_thym.JPG',
+    title: 'Thymus vulgaris (타임)',
+  },
+  'mint-main': {
+    file: 'mint-main.jpg',
+    author: 'Kolforn',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:-2019-07-21_Mint_(Mentha_spicata),_Trimingham.JPG',
+    title: 'Mentha (민트)',
+  },
+  'oregano-main': {
+    file: 'oregano-main.jpg',
+    author: 'Ivar Leidus',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Origanum_vulgare_inflorescence_-_Keila.jpg',
+    title: 'Origanum vulgare (오레가노)',
+  },
+  'sage-main': {
+    file: 'sage-main.jpg',
+    author: 'Pattedyr',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl:
+      'https://commons.wikimedia.org/wiki/File:Echte_salie_(Salvia_officinalis_L.,_Salvia_crispa_maior)_Hortus_Botanicus_Leiden_(NL)_2.jpg',
+    title: 'Salvia officinalis (세이지)',
+  },
+  'dill-main': {
+    file: 'dill-main.jpg',
+    author: 'Ermell',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Dill_Bluete_7080848-PSD-2.jpg',
+    title: 'Anethum graveolens (딜)',
+  },
+  'coriander-main': {
+    file: 'coriander-main.jpg',
+    author: 'Malyadri',
+    license: 'CC BY-SA 3.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/3.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Corianderleaf03.JPG',
+    title: 'Coriandrum sativum (고수)',
+  },
+  'parsley-main': {
+    file: 'parsley-main.jpg',
+    author: 'Jeffery Martin',
+    license: 'CC0',
+    licenseUrl: 'https://creativecommons.org/publicdomain/zero/1.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Parsley_leaves.jpg',
+    title: 'Petroselinum crispum (파슬리)',
+  },
+  'chives-main': {
+    file: 'chives-main.jpg',
+    author: 'John Knight',
+    license: 'CC BY 2.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by/2.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Chives_2.jpg',
+    title: 'Allium schoenoprasum (차이브)',
+  },
+  'chamomile-german': {
+    file: 'chamomile-german.jpg',
+    author: 'Rasbak',
+    license: 'CC BY-SA 3.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/3.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Matricaria_chamomilla_flower_(02).jpg',
+    title: 'Matricaria chamomilla (저먼 캐모마일)',
+  },
+  'chamomile-roman': {
+    file: 'chamomile-roman.jpg',
+    author: 'Fernando Losada Rodríguez',
+    license: 'CC BY-SA 4.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/4.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:Chamaemelum_nobile.001_-_Ribadeo.jpg',
+    title: 'Chamaemelum nobile (로만 캐모마일)',
+  },
+  'lemon-balm-main': {
+    file: 'lemon-balm-main.jpg',
+    author: 'JLPC',
+    license: 'CC BY-SA 3.0',
+    licenseUrl: 'https://creativecommons.org/licenses/by-sa/3.0/',
+    sourceUrl: 'https://commons.wikimedia.org/wiki/File:M%C3%A9lisse_Feuilles_FR_2013b.jpg',
+    title: 'Melissa officinalis (레몬밤)',
+  },
 }
 
 export function getCcPhoto(speciesId: string): CcPhoto | undefined {

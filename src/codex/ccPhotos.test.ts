@@ -163,6 +163,25 @@ const VEGETABLE_FRUIT_SPECIES = [
   'pea-main',
 ]
 
+// ② 열두째 배치 = 허브 15종(비화훼 다섯째 그룹).
+const HERB_SPECIES = [
+  'basil-main',
+  'lavender-english',
+  'lavender-french',
+  'rosemary-main',
+  'thyme-main',
+  'mint-main',
+  'oregano-main',
+  'sage-main',
+  'dill-main',
+  'coriander-main',
+  'parsley-main',
+  'chives-main',
+  'chamomile-german',
+  'chamomile-roman',
+  'lemon-balm-main',
+]
+
 // 공개·무료 배포에 안전한 자유 라이선스만 허용한다(NC/ND 불가).
 const ALLOWED_LICENSE = /^(CC0|Public Domain|CC BY \d\.\d|CC BY-SA \d\.\d)$/
 
@@ -239,6 +258,13 @@ describe('ccPhotos — CC 사진 매핑', () => {
 
   it('채소(열매·뿌리) 13종이 모두 매핑돼 있다(② 열한째 배치)', () => {
     for (const id of VEGETABLE_FRUIT_SPECIES) {
+      expect(ccPhotos[id], `${id} 누락`).toBeDefined()
+      expect(getCcPhoto(id)).toBe(ccPhotos[id])
+    }
+  })
+
+  it('허브 15종이 모두 매핑돼 있다(② 열두째 배치)', () => {
+    for (const id of HERB_SPECIES) {
       expect(ccPhotos[id], `${id} 누락`).toBeDefined()
       expect(getCcPhoto(id)).toBe(ccPhotos[id])
     }
