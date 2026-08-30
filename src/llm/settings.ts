@@ -9,11 +9,15 @@ const PUTER_MODEL_KEY = 'og.llm.puterModel'
  *
  * Puter는 사용자마다 무료 월 할당량을 주고 초과분만 그 사용자에게 청구한다.
  * 앱을 만드는 쪽은 키도 비용도 지지 않는다.
+ *
+ * 아래 네 개는 2026-08-31에 puter.ai.listModels()로 실제 목록(852개)을 받아 고른 것이다.
+ * Puter가 모델을 갈아 끼우면 낡을 수 있으니, 호출이 모델 문제로 실패하면 이 목록부터 본다.
  */
 export const PUTER_MODELS: readonly { id: string; label: string }[] = [
-  { id: 'gpt-5.6-luna', label: 'GPT' },
-  { id: 'claude-sonnet-4-5', label: 'Claude' },
-  { id: 'gemini-3.1-flash-lite', label: 'Gemini' },
+  { id: 'gpt-5.4', label: 'GPT' },
+  { id: 'claude-sonnet-5', label: 'Claude' },
+  { id: 'gemini-3.7-flash', label: 'Gemini' },
+  { id: 'grok-4.6', label: 'Grok' },
 ]
 
 export interface LlmSettings {

@@ -32,10 +32,11 @@ describe('llm 설정', () => {
     expect(loadLlmSettings().puterModel).toBe(PUTER_MODELS[1].id)
   })
 
-  it('모델 목록에 GPT·Claude·Gemini가 모두 들어 있다', () => {
+  it('모델 목록에 GPT·Claude·Gemini·Grok이 모두 들어 있다', () => {
     const ids = PUTER_MODELS.map((m) => m.id).join(' ')
     expect(ids).toMatch(/gpt/)
     expect(ids).toMatch(/claude/)
     expect(ids).toMatch(/gemini/)
+    expect(ids).toMatch(/grok/)
   })
 })
