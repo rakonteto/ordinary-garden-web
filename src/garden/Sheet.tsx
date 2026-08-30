@@ -6,10 +6,11 @@ interface Props {
   onClose: () => void
   onSave: () => void
   canSave: boolean
+  saveLabel?: string
   children: ReactNode
 }
 
-export default function Sheet({ title, onClose, onSave, canSave, children }: Props) {
+export default function Sheet({ title, onClose, onSave, canSave, saveLabel = '저장', children }: Props) {
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
       if (e.key === 'Escape') onClose()
@@ -33,7 +34,7 @@ export default function Sheet({ title, onClose, onSave, canSave, children }: Pro
           </button>
           <span className="sheet__title">{title}</span>
           <button type="button" className="sheet__save" onClick={onSave} disabled={!canSave}>
-            저장
+            {saveLabel}
           </button>
         </div>
         <div className="sheet__body">{children}</div>

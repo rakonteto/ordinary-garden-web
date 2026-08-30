@@ -1,0 +1,65 @@
+.llm-card {
+  padding: var(--space-4);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  border: 1px solid var(--color-surface-border);
+}
+
+.llm-title {
+  margin: 0 0 var(--space-1);
+  font-size: 1.0625rem;
+}
+
+.llm-muted {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--color-text-weak);
+  line-height: 1.5;
+}
+
+.llm-options {
+  margin: var(--space-3) 0 0;
+  padding: 0;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.llm-legend {
+  padding: 0;
+  font-size: 0.8125rem;
+  color: var(--color-text-weak);
+}
+
+.llm-option {
+  display: flex;
+  gap: var(--space-2);
+  align-items: flex-start;
+}
+
+.llm-option__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.llm-option__label {
+  font-size: 0.9375rem;
+}
+
+.llm-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-top: var(--space-3);
+}
+
+.llm-input {
+  padding: var(--space-2);
+  border: 1px solid var(--color-surface-border);
+  border-radius: var(--radius-chip);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font: inherit;
+}

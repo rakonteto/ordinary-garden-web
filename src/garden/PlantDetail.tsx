@@ -12,6 +12,10 @@ import type { JournalEntry } from '../data/types'
 import type { EditPlantInput } from './store'
 import type { EntryInput } from '../journal/usePlantJournal'
 import CareSection from '../care/CareSection'
+import { useCare } from '../care/useCare'
+import { useWeather } from '../weather/useWeather'
+import { captureSnapshot } from '../journal/weatherSnapshot'
+import ConsultSheet from '../llm/ConsultSheet'
 import './PlantDetail.css'
 
 export default function PlantDetail() {
@@ -19,10 +23,13 @@ export default function PlantDetail() {
   const navigate = useNavigate()
   const { areas, plants, loaded, editPlant, archivePlant, deletePlant } = useGarden()
   const { entries, loaded: journalLoaded, addEntry, updateEntry, deleteEntry } = usePlantJournal(id ?? '')
+  const { rules } = useCare()
+  const { bundle } = useWeather()
 
   // 모달 상태: 'edit' | null | JournalEntry(편집 대상) | 'add'(일지 추가)
   const [editOpen, setEditOpen] = useState(false)
   const [journalOpen, setJournalOpen] = useState<false | null | JournalEntry>(false)
+  const [consultOpen, setConsultOpen] = useState(false)
   // false = 닫힘, null = 새 일지 추가, JournalEntry = 편집 대상
 
   const plant = plants.find((p) => p.id === id)
@@ -116,6 +123,17 @@ export default function PlantDetail() {
       {/* 케어 섹션 */}
       <CareSection plantId={plant.id} />
 
+      {/* 돌봄 상담: 이 아이의 일지·돌봄·오늘 날씨를 묶어 물어본다 */}
+      <div className="pdetail__consult">
+        <button
+          type="button"
+          className="pdetail__consult-btn"
+          onClick={() => setConsultOpen(true)}
+        >
+          이 아이 어때요? 물어보기
+        </button>
+      </div>
+
       {/* 재배일지 섹션 */}
       <div className="pdetail__journal">
         <div className="pdetail__journal-header">
@@ -148,6 +166,18 @@ export default function PlantDetail() {
       </div>
 
       {/* 식물 편집 시트 */}
+      {consultOpen && (
+        <ConsultSheet
+          plant={plant}
+          areaName={areaName}
+          entries={entries}
+          rules={rules.filter((r) => r.plantId === plant.id)}
+          weather={bundle ? captureSnapshot(bundle, Date.now()) : undefined}
+          onClose={() => setConsultOpen(false)}
+          onSaveEntry={addEntry}
+        />
+      )}
+
       {editOpen && (
         <EditPlantSheet
           plant={plant}
