@@ -1,39 +1,24 @@
 import type { ProviderId } from './types'
+import { BRIDGE_PROVIDERS } from './types'
 
 const PROVIDER_KEY = 'og.llm.provider'
 const BRIDGE_TOKEN_KEY = 'og.llm.bridgeToken'
-const PUTER_MODEL_KEY = 'og.llm.puterModel'
-
-/**
- * Puter로 고를 수 있는 모델.
- *
- * Puter는 사용자마다 무료 월 할당량을 주고 초과분만 그 사용자에게 청구한다.
- * 앱을 만드는 쪽은 키도 비용도 지지 않는다.
- *
- * 아래 네 개는 2026-08-31에 puter.ai.listModels()로 실제 목록(852개)을 받아 고른 것이다.
- * Puter가 모델을 갈아 끼우면 낡을 수 있으니, 호출이 모델 문제로 실패하면 이 목록부터 본다.
- */
-export const PUTER_MODELS: readonly { id: string; label: string }[] = [
-  { id: 'gpt-5.4', label: 'GPT' },
-  { id: 'claude-sonnet-5', label: 'Claude' },
-  { id: 'gemini-3.7-flash', label: 'Gemini' },
-  { id: 'grok-4.6', label: 'Grok' },
-]
 
 export interface LlmSettings {
   provider: ProviderId
   bridgeToken: string
-  puterModel: string
 }
 
-// 넘기기는 키도 계정도 필요 없어 어느 기기에서나 곧바로 된다. 그래서 기본값으로 둔다.
+/**
+ * 넘기기가 기본이다. 브리지는 맥에서만 닿으므로, 아내분 아이폰에서 앱을 처음 열었을 때
+ * 곧바로 쓸 수 있는 경로여야 한다.
+ */
 const DEFAULTS: LlmSettings = {
   provider: 'handoff',
   bridgeToken: '',
-  puterModel: PUTER_MODELS[0].id,
 }
 
-const PROVIDERS: readonly ProviderId[] = ['handoff', 'bridge', 'puter']
+const PROVIDERS: readonly ProviderId[] = ['handoff', ...BRIDGE_PROVIDERS]
 
 function read(key: string): string | null {
   try {
@@ -54,12 +39,10 @@ function write(key: string, value: string): void {
 
 export function loadLlmSettings(): LlmSettings {
   const provider = read(PROVIDER_KEY) as ProviderId | null
-  const model = read(PUTER_MODEL_KEY)
 
   return {
     provider: provider && PROVIDERS.includes(provider) ? provider : DEFAULTS.provider,
     bridgeToken: read(BRIDGE_TOKEN_KEY) ?? DEFAULTS.bridgeToken,
-    puterModel: model && PUTER_MODELS.some((m) => m.id === model) ? model : DEFAULTS.puterModel,
   }
 }
 
@@ -71,6 +54,4 @@ export function saveBridgeToken(token: string): void {
   write(BRIDGE_TOKEN_KEY, token.trim())
 }
 
-export function savePuterModel(model: string): void {
-  if (PUTER_MODELS.some((m) => m.id === model)) write(PUTER_MODEL_KEY, model)
-}
+export { BRIDGE_PROVIDERS }

@@ -36,7 +36,7 @@ describe('ConsultSheet — 앱이 직접 묻는 경로', () => {
   beforeEach(() => {
     localStorage.clear()
     vi.clearAllMocks()
-    saveProvider('bridge')
+    saveProvider('claude')
     saveBridgeToken('tok')
   })
 
@@ -53,7 +53,7 @@ describe('ConsultSheet — 앱이 직접 묻는 경로', () => {
     await waitFor(() => expect(screen.getByText('물을 조금 줄여 보세요.')).toBeInTheDocument())
     expect(runConsult).toHaveBeenCalledWith(
       expect.objectContaining({ plant, question: '잎이 처져요' }),
-      expect.objectContaining({ provider: 'bridge' }),
+      expect.objectContaining({ provider: 'claude' }),
     )
   })
 

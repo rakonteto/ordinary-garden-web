@@ -1,25 +1,22 @@
 import { useState } from 'react'
-import { loadLlmSettings, saveProvider, saveBridgeToken, savePuterModel, PUTER_MODELS } from './settings'
-import type { ProviderId } from './types'
+import { loadLlmSettings, saveProvider, saveBridgeToken, BRIDGE_PROVIDERS } from './settings'
+import type { ProviderId, BridgeProviderId } from './types'
 import './LlmSection.css'
 
-const OPTIONS: readonly { id: ProviderId; label: string; note: string }[] = [
-  {
-    id: 'handoff',
-    label: '질문 복사해서 쓰는 AI 앱에 붙여넣기',
-    note: '어느 기기에서나 됩니다. 이미 결제 중인 구독을 그대로 쓰는 길은 이것뿐입니다.',
-  },
-  {
-    id: 'puter',
-    label: 'Puter로 앱 안에서 바로 묻기',
-    note: 'Puter 계정의 무료 월 할당량을 씁니다. 정원 기록이 Puter를 거쳐 갑니다.',
-  },
-  {
-    id: 'bridge',
-    label: '맥에서 쓰는 로컬 브리지',
-    note: '맥에서 브리지를 띄웠을 때만 됩니다. 아이폰·아이패드에서는 닿지 않습니다.',
-  },
-]
+const BRIDGE_LABEL: Record<BridgeProviderId, string> = {
+  claude: 'Claude 구독',
+  codex: 'ChatGPT 구독',
+  gemini: 'Gemini 구독',
+  grok: 'Grok 구독',
+}
+
+/** 각 구독을 실제로 부르는 공식 CLI. 무엇이 도는지 밝혀 둔다. */
+const CLI_LABEL: Record<BridgeProviderId, string> = {
+  claude: 'claude',
+  codex: 'codex',
+  gemini: 'agy',
+  grok: 'grok',
+}
 
 export default function LlmSection() {
   const [settings, setSettings] = useState(loadLlmSettings)
@@ -34,10 +31,7 @@ export default function LlmSection() {
     setSettings(loadLlmSettings())
   }
 
-  function pickModel(model: string) {
-    savePuterModel(model)
-    setSettings(loadLlmSettings())
-  }
+  const usesBridge = settings.provider !== 'handoff'
 
   return (
     <section className="llm-card">
@@ -46,40 +40,45 @@ export default function LlmSection() {
 
       <fieldset className="llm-options">
         <legend className="llm-legend">묻는 곳</legend>
-        {OPTIONS.map((option) => (
-          <label key={option.id} className="llm-option">
+
+        <label className="llm-option">
+          <input
+            type="radio"
+            name="llm-provider"
+            value="handoff"
+            checked={settings.provider === 'handoff'}
+            onChange={() => pickProvider('handoff')}
+          />
+          <span className="llm-option__body">
+            <span className="llm-option__label">질문 복사해서 쓰는 AI 앱에 붙여넣기</span>
+            <span className="llm-muted">
+              어느 기기에서나 됩니다. 이미 결제 중인 구독을 그대로 쓰는 길은 이것뿐입니다.
+            </span>
+          </span>
+        </label>
+
+        <p className="llm-group-note">
+          아래 넷은 <b>맥에서 브리지를 띄웠을 때만</b> 됩니다. 아이폰·아이패드에서는 닿지 않습니다.
+        </p>
+
+        {BRIDGE_PROVIDERS.map((id) => (
+          <label key={id} className="llm-option">
             <input
               type="radio"
               name="llm-provider"
-              value={option.id}
-              checked={settings.provider === option.id}
-              onChange={() => pickProvider(option.id)}
+              value={id}
+              checked={settings.provider === id}
+              onChange={() => pickProvider(id)}
             />
             <span className="llm-option__body">
-              <span className="llm-option__label">{option.label}</span>
-              <span className="llm-muted">{option.note}</span>
+              <span className="llm-option__label">{BRIDGE_LABEL[id]}</span>
+              <span className="llm-muted">공식 CLI {CLI_LABEL[id]}를 부릅니다.</span>
             </span>
           </label>
         ))}
       </fieldset>
 
-      {settings.provider === 'puter' && (
-        <div className="llm-field">
-          <label className="llm-muted" htmlFor="llm-model">모델</label>
-          <select
-            id="llm-model"
-            className="llm-input"
-            value={settings.puterModel}
-            onChange={(e) => pickModel(e.target.value)}
-          >
-            {PUTER_MODELS.map((model) => (
-              <option key={model.id} value={model.id}>{model.label}</option>
-            ))}
-          </select>
-        </div>
-      )}
-
-      {settings.provider === 'bridge' && (
+      {usesBridge && (
         <div className="llm-field">
           <label className="llm-muted" htmlFor="llm-token">브리지 토큰</label>
           <input

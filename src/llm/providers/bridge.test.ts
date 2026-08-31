@@ -26,6 +26,22 @@ describe('completeViaBridge', () => {
     expect((init.headers as Record<string, string>).Authorization).toBe('Bearer tok')
   })
 
+  it('어느 구독 CLI를 부를지 함께 보낸다', async () => {
+    const spy = stubFetch(async () => ({ ok: true, json: async () => ({ ok: true, result: 'ok' }) }))
+    await completeViaBridge(prompt, { token: 'tok', provider: 'grok' })
+
+    const body = JSON.parse(((spy.mock.calls[0] as [string, RequestInit])[1].body as string))
+    expect(body.provider).toBe('grok')
+  })
+
+  it('공급자를 지정하지 않으면 claude로 간다', async () => {
+    const spy = stubFetch(async () => ({ ok: true, json: async () => ({ ok: true, result: 'ok' }) }))
+    await completeViaBridge(prompt, { token: 'tok' })
+
+    const body = JSON.parse(((spy.mock.calls[0] as [string, RequestInit])[1].body as string))
+    expect(body.provider).toBe('claude')
+  })
+
   it('시스템 지시를 systemPrompt로 따로 실어 보낸다', async () => {
     const spy = stubFetch(async () => ({ ok: true, json: async () => ({ ok: true, result: 'ok' }) }))
     await completeViaBridge(prompt, { token: 'tok' })

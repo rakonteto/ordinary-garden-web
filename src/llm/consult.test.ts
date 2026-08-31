@@ -8,12 +8,8 @@ vi.mock('./providers/bridge', () => ({
   completeViaBridge: vi.fn(async () => '브리지 답'),
   BRIDGE_URL: 'http://127.0.0.1:8787',
 }))
-vi.mock('./providers/puter', () => ({
-  completeViaPuter: vi.fn(async () => 'Puter 답'),
-}))
 
 import { completeViaBridge } from './providers/bridge'
-import { completeViaPuter } from './providers/puter'
 
 const NOW = Date.UTC(2026, 7, 31, 3, 0, 0)
 const plant: Plant = {
@@ -23,39 +19,42 @@ const plant: Plant = {
 const ctx: ConsultContext = { plant, entries: [], rules: [], question: '왜 이래요', asOfMs: NOW }
 
 function settings(over: Partial<LlmSettings> = {}): LlmSettings {
-  return { provider: 'bridge', bridgeToken: 'tok', puterModel: 'gpt-5.6-luna', ...over }
+  return { provider: 'claude', bridgeToken: 'tok', ...over }
 }
 
 describe('runConsult', () => {
   beforeEach(() => vi.clearAllMocks())
 
-  it('브리지를 고르면 토큰을 실어 브리지로 보낸다', async () => {
-    expect(await runConsult(ctx, settings())).toBe('브리지 답')
+  it('고른 구독을 브리지에 실어 보낸다', async () => {
+    expect(await runConsult(ctx, settings({ provider: 'codex' }))).toBe('브리지 답')
     expect(completeViaBridge).toHaveBeenCalledWith(
       expect.objectContaining({ system: expect.any(String), user: expect.stringContaining('방울토마토') }),
-      expect.objectContaining({ token: 'tok' }),
+      expect.objectContaining({ token: 'tok', provider: 'codex' }),
     )
   })
 
-  it('Puter를 고르면 고른 모델로 보낸다', async () => {
-    expect(await runConsult(ctx, settings({ provider: 'puter' }))).toBe('Puter 답')
-    expect(completeViaPuter).toHaveBeenCalledWith(
-      expect.anything(),
-      { model: 'gpt-5.6-luna' },
-    )
+  it('네 구독이 모두 브리지를 거친다', async () => {
+    for (const provider of ['claude', 'codex', 'gemini', 'grok'] as const) {
+      vi.clearAllMocks()
+      await runConsult(ctx, settings({ provider }))
+      expect(completeViaBridge).toHaveBeenCalledWith(
+        expect.anything(),
+        expect.objectContaining({ provider }),
+      )
+    }
   })
 
   it('넘기기는 앱이 대신 부를 수 없으므로 거절한다', async () => {
     await expect(runConsult(ctx, settings({ provider: 'handoff' }))).rejects.toThrow()
     expect(completeViaBridge).not.toHaveBeenCalled()
-    expect(completeViaPuter).not.toHaveBeenCalled()
   })
 })
 
 describe('canProviderAnswer', () => {
-  it('앱이 직접 답을 받아 올 수 있는 공급자만 참이다', () => {
-    expect(canProviderAnswer('bridge')).toBe(true)
-    expect(canProviderAnswer('puter')).toBe(true)
+  it('넘기기만 사람 손이 필요하다', () => {
     expect(canProviderAnswer('handoff')).toBe(false)
+    for (const p of ['claude', 'codex', 'gemini', 'grok'] as const) {
+      expect(canProviderAnswer(p)).toBe(true)
+    }
   })
 })

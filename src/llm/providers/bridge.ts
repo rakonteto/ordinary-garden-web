@@ -1,4 +1,5 @@
 import { LlmError } from '../types'
+import type { BridgeProviderId } from '../types'
 import type { ConsultPrompt } from '../consultPrompt'
 
 /** 맥에서 도는 로컬 브리지. 다른 기기에서는 이 주소에 닿지 않는다. */
@@ -6,6 +7,8 @@ export const BRIDGE_URL = 'http://127.0.0.1:8787'
 
 export interface BridgeOptions {
   token: string
+  /** 브리지가 부를 구독 CLI. 비우면 claude. */
+  provider?: BridgeProviderId
   model?: string
   timeoutMs?: number
 }
@@ -39,6 +42,7 @@ export async function completeViaBridge(
       method: 'POST',
       headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
+        provider: options.provider ?? 'claude',
         prompt: prompt.user,
         systemPrompt: prompt.system,
         model: options.model,
