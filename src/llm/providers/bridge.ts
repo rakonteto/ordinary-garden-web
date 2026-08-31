@@ -51,7 +51,8 @@ export async function completeViaBridge(
     })
   } catch {
     throw new LlmError('connection', '로컬 브리지에 닿지 못했습니다.', {
-      hint: '맥에서 `npm start`로 브리지를 띄웠는지 확인해 주세요. 다른 기기에서는 이 경로를 쓸 수 없습니다.',
+      hint:
+        '브리지는 맥에서 로컬로 띄운 앱에서만 닿습니다. 배포된 https 주소에서는 브라우저가 로컬 http 호출을 막고, 다른 기기에서는 주소 자체에 닿지 않습니다. 맥에서 상주 여부는 `npm run agent:status`로 확인해 주세요.',
     })
   }
 

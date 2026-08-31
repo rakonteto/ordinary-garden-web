@@ -58,7 +58,7 @@ export default function LlmSection() {
         </label>
 
         <p className="llm-group-note">
-          아래 넷은 <b>맥에서 브리지를 띄웠을 때만</b> 됩니다. 아이폰·아이패드에서는 닿지 않습니다.
+          아래 넷은 <b>맥에서 로컬로 띄운 앱에서만</b> 됩니다. 배포된 주소에서나 아이폰·아이패드에서는 닿지 않습니다.
         </p>
 
         {BRIDGE_PROVIDERS.map((id) => (
