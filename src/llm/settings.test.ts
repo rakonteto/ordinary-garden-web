@@ -1,5 +1,8 @@
 import { describe, it, expect, beforeEach } from 'vitest'
-import { loadLlmSettings, saveProvider, saveBridgeToken, BRIDGE_PROVIDERS } from './settings'
+import {
+  loadLlmSettings, saveProvider, saveBridgeToken, saveBridgeUrl, normalizeBridgeUrl,
+  BRIDGE_PROVIDERS,
+} from './settings'
 
 describe('llm 설정', () => {
   beforeEach(() => localStorage.clear())
@@ -40,5 +43,38 @@ describe('llm 설정', () => {
     expect(loadLlmSettings().bridgeToken).toBe('shared')
     saveProvider('codex')
     expect(loadLlmSettings().bridgeToken).toBe('shared')
+  })
+})
+
+describe('브리지 주소', () => {
+  beforeEach(() => localStorage.clear())
+
+  it('정하지 않았으면 빈 문자열이고, 그때는 이 맥의 루프백으로 간다', () => {
+    expect(loadLlmSettings().bridgeUrl).toBe('')
+  })
+
+  it('넣은 주소를 기억한다', () => {
+    saveBridgeUrl('https://mac.tail1234.ts.net')
+    expect(loadLlmSettings().bridgeUrl).toBe('https://mac.tail1234.ts.net')
+  })
+
+  it('스킴을 빠뜨리면 https를 붙인다', () => {
+    // 손으로 주소를 바꾸는 상황은 테일넷 주소를 넣을 때뿐이고, 그쪽은 늘 https다.
+    expect(normalizeBridgeUrl('mac.tail1234.ts.net')).toBe('https://mac.tail1234.ts.net')
+  })
+
+  it('루프백처럼 http를 명시하면 존중한다', () => {
+    expect(normalizeBridgeUrl('http://127.0.0.1:8787')).toBe('http://127.0.0.1:8787')
+  })
+
+  it('끝의 빗금은 뗀다', () => {
+    // 남겨 두면 `//api/invoke`가 되어 헛되이 실패한다.
+    expect(normalizeBridgeUrl('https://mac.tail1234.ts.net//')).toBe('https://mac.tail1234.ts.net')
+  })
+
+  it('비우면 기본값으로 되돌아간다', () => {
+    saveBridgeUrl('https://mac.tail1234.ts.net')
+    saveBridgeUrl('  ')
+    expect(loadLlmSettings().bridgeUrl).toBe('')
   })
 })

@@ -28,5 +28,6 @@ export async function runConsult(ctx: ConsultContext, settings: LlmSettings): Pr
   return completeViaBridge(prompt, {
     token: settings.bridgeToken,
     provider: settings.provider,
+    baseUrl: settings.bridgeUrl,
   })
 }

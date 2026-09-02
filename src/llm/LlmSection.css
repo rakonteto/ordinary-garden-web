@@ -72,3 +72,7 @@
   color: var(--color-text-weak);
   line-height: 1.5;
 }
+
+.llm-subfield {
+  margin-top: var(--space-2);
+}

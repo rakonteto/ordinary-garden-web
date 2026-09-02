@@ -6,7 +6,7 @@ import type { Plant } from '../data/types'
 
 vi.mock('./providers/bridge', () => ({
   completeViaBridge: vi.fn(async () => '브리지 답'),
-  BRIDGE_URL: 'http://127.0.0.1:8787',
+  BRIDGE_DEFAULT_URL: 'http://127.0.0.1:8787',
 }))
 
 import { completeViaBridge } from './providers/bridge'
@@ -19,7 +19,7 @@ const plant: Plant = {
 const ctx: ConsultContext = { plant, entries: [], rules: [], question: '왜 이래요', asOfMs: NOW }
 
 function settings(over: Partial<LlmSettings> = {}): LlmSettings {
-  return { provider: 'claude', bridgeToken: 'tok', ...over }
+  return { provider: 'claude', bridgeToken: 'tok', bridgeUrl: '', ...over }
 }
 
 describe('runConsult', () => {
@@ -30,6 +30,15 @@ describe('runConsult', () => {
     expect(completeViaBridge).toHaveBeenCalledWith(
       expect.objectContaining({ system: expect.any(String), user: expect.stringContaining('방울토마토') }),
       expect.objectContaining({ token: 'tok', provider: 'codex' }),
+    )
+  })
+
+  it('설정한 브리지 주소를 함께 넘긴다', async () => {
+    // 아이폰이나 배포된 주소에서는 루프백에 닿지 못해 테일넷 주소로 갈아 끼운다.
+    await runConsult(ctx, settings({ bridgeUrl: 'https://mac.tail1234.ts.net' }))
+    expect(completeViaBridge).toHaveBeenCalledWith(
+      expect.anything(),
+      expect.objectContaining({ baseUrl: 'https://mac.tail1234.ts.net' }),
     )
   })
 

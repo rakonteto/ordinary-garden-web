@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, afterEach } from 'vitest'
-import { completeViaBridge, BRIDGE_URL } from './bridge'
+import { completeViaBridge, BRIDGE_DEFAULT_URL } from './bridge'
 
 const prompt = { system: 'sys', user: 'usr' }
 
@@ -22,8 +22,26 @@ describe('completeViaBridge', () => {
 
     expect(answer).toBe('물을 줄여 보세요.')
     const [url, init] = spy.mock.calls[0] as [string, RequestInit]
-    expect(url).toBe(`${BRIDGE_URL}/api/invoke`)
+    expect(url).toBe(`${BRIDGE_DEFAULT_URL}/api/invoke`)
     expect((init.headers as Record<string, string>).Authorization).toBe('Bearer tok')
+  })
+
+  it('주소를 주면 그 주소로 부른다', async () => {
+    // 아이폰이나 배포된 https 페이지에서는 루프백에 닿지 못한다. tailscale serve가 TLS를
+    // 받아 루프백으로 넘겨 주므로 앱은 부를 주소만 바꾸면 된다.
+    const spy = stubFetch(async () => ({ ok: true, json: async () => ({ ok: true, result: 'ok' }) }))
+    await completeViaBridge(prompt, { token: 'tok', baseUrl: 'https://mac.tail1234.ts.net' })
+
+    expect((spy.mock.calls[0] as [string, RequestInit])[0]).toBe(
+      'https://mac.tail1234.ts.net/api/invoke',
+    )
+  })
+
+  it('주소를 비워 두면 이 맥의 루프백으로 간다', async () => {
+    const spy = stubFetch(async () => ({ ok: true, json: async () => ({ ok: true, result: 'ok' }) }))
+    await completeViaBridge(prompt, { token: 'tok', baseUrl: '   ' })
+
+    expect((spy.mock.calls[0] as [string, RequestInit])[0]).toBe(`${BRIDGE_DEFAULT_URL}/api/invoke`)
   })
 
   it('어느 구독 CLI를 부를지 함께 보낸다', async () => {

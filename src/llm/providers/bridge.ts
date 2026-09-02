@@ -2,8 +2,8 @@ import { LlmError } from '../types'
 import type { BridgeProviderId } from '../types'
 import type { ConsultPrompt } from '../consultPrompt'
 
-/** 맥에서 도는 로컬 브리지. 다른 기기에서는 이 주소에 닿지 않는다. */
-export const BRIDGE_URL = 'http://127.0.0.1:8787'
+/** 이 맥에서 열었을 때의 브리지 주소. 다른 기기에서는 설정에서 테일넷 주소로 갈아 끼운다. */
+export const BRIDGE_DEFAULT_URL = 'http://127.0.0.1:8787'
 
 export interface BridgeOptions {
   token: string
@@ -11,6 +11,13 @@ export interface BridgeOptions {
   provider?: BridgeProviderId
   model?: string
   timeoutMs?: number
+  /**
+   * 브리지 주소. 비우면 이 맥의 루프백으로 간다.
+   *
+   * 아이폰에서나 배포된 https 페이지에서는 루프백에 닿지 못한다. `tailscale serve`가 TLS를
+   * 받아 루프백으로 넘겨 주므로, 앱은 부를 주소만 테일넷 주소로 바꾸면 된다.
+   */
+  baseUrl?: string
 }
 
 interface BridgeFailure {
@@ -29,6 +36,7 @@ export async function completeViaBridge(
   prompt: ConsultPrompt,
   options: BridgeOptions,
 ): Promise<string> {
+  const baseUrl = options.baseUrl?.trim() || BRIDGE_DEFAULT_URL
   const token = options.token.trim()
   if (!token) {
     throw new LlmError('auth', '브리지 토큰이 없습니다.', {
@@ -38,7 +46,7 @@ export async function completeViaBridge(
 
   let res: Response
   try {
-    res = await fetch(`${BRIDGE_URL}/api/invoke`, {
+    res = await fetch(`${baseUrl}/api/invoke`, {
       method: 'POST',
       headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -50,9 +58,9 @@ export async function completeViaBridge(
       }),
     })
   } catch {
-    throw new LlmError('connection', '로컬 브리지에 닿지 못했습니다.', {
+    throw new LlmError('connection', `브리지에 닿지 못했습니다(${baseUrl}).`, {
       hint:
-        '브리지는 맥에서 로컬로 띄운 앱에서만 닿습니다. 배포된 https 주소에서는 브라우저가 로컬 http 호출을 막고, 다른 기기에서는 주소 자체에 닿지 않습니다. 맥에서 상주 여부는 `npm run agent:status`로 확인해 주세요.',
+        '이 맥에서 열었다면 상주 여부를 `npm run agent:status`로 확인해 주세요. 다른 기기나 배포된 주소에서 열었다면 설정의 브리지 주소에 테일넷 주소를 넣어야 하고, 맥이 켜져 있어야 합니다.',
     })
   }
 

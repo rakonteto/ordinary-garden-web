@@ -38,9 +38,36 @@ describe('LlmSection', () => {
     expect(loadLlmSettings().bridgeToken).toBe('abc123')
   })
 
-  it('브리지가 맥에서만 된다는 점을 알린다', () => {
+  it('맥이 켜져 있어야 한다는 점과, 다른 기기에서는 주소가 필요하다는 점을 알린다', () => {
     render(<LlmSection />)
-    expect(screen.getByText(/아이폰·아이패드에서는 닿지 않습니다/)).toBeInTheDocument()
+    expect(screen.getByText(/맥에서 브리지가 떠 있어야/)).toBeInTheDocument()
+    expect(screen.getByText(/테일넷 주소를 넣어야 하고, 그때도 맥이 켜져 있어야/)).toBeInTheDocument()
+  })
+
+  it('구독을 고르면 주소 칸이 나오고, 넣으면 저장된다', () => {
+    render(<LlmSection />)
+    fireEvent.click(screen.getByRole('radio', { name: /Claude/ }))
+    fireEvent.change(screen.getByLabelText('브리지 주소'), {
+      target: { value: 'mac.tail1234.ts.net' },
+    })
+
+    // 스킴이 없으면 https를 붙여 저장한다.
+    expect(loadLlmSettings().bridgeUrl).toBe('https://mac.tail1234.ts.net')
+  })
+
+  it('주소 칸에 친 그대로가 화면에 남는다', () => {
+    // 글자마다 정규화한 값을 되돌리면 커서가 튀어 주소를 칠 수가 없다.
+    render(<LlmSection />)
+    fireEvent.click(screen.getByRole('radio', { name: /Claude/ }))
+    const box = screen.getByLabelText('브리지 주소')
+    fireEvent.change(box, { target: { value: 'mac.tail' } })
+
+    expect(box).toHaveValue('mac.tail')
+  })
+
+  it('넘기기일 때는 주소 칸이 나오지 않는다', () => {
+    render(<LlmSection />)
+    expect(screen.queryByLabelText('브리지 주소')).not.toBeInTheDocument()
   })
 
   it('넘기기만이 이미 쓰는 구독을 그대로 쓴다는 점을 알린다', () => {
